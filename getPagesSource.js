@@ -49,7 +49,7 @@ function DOMtoString(document_root) {
     *   Inject breaks into DOM of IP addresses 
     */
     var newArray = myArray.join("\n");
-
+    
     /** Step 3
     *   Add OSINT iframes and load pages 
     *
@@ -80,7 +80,7 @@ function DOMtoString(document_root) {
         tmToggleDiv.id = tmToggleDivName;
         tmToggleDiv.Name = tmToggleDivName;
         tmToggleDiv.value = tmToggleDivName;
-        tmToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:187px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;';
+        tmToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:187px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
         tmToggleDiv.className = 'toggletmDiv';
         //set the text to append to this div
         tmToggleDivText.innerText += "ThreatMiner";
@@ -104,7 +104,7 @@ function DOMtoString(document_root) {
         tcToggleDiv.id = tcToggleDivName;
         tcToggleDiv.Name = tcToggleDivName;
         tcToggleDiv.value = tcToggleDivName;
-        tcToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:287px;height\:39px;width\:100px;color\:white;opacity\:0\.0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;';
+        tcToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:287px;height\:39px;width\:100px;color\:white;opacity\:0\.0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
         tcToggleDiv.className = 'toggletcDiv';
         //set the text to append to this div
         tcToggleDivText.innerText += "ThreatCrowd";
@@ -129,7 +129,7 @@ function DOMtoString(document_root) {
         aipdbToggleDiv.Name = aipdbToggleDivName;
         aipdbToggleDiv.value = aipdbToggleDivName;
         var bgImage = chrome.extension.getURL("images/1.jpg");
-        aipdbToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:387px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;';
+        aipdbToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:387px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
         aipdbToggleDiv.className = 'toggleAIPDBDiv';
         //set the text to append to this div
         aipdbToggleDivText.innerText += "AbuseIPDB";
@@ -153,7 +153,7 @@ function DOMtoString(document_root) {
     var newArrayDiv = document.createElement("div");
     var bgImage = chrome.extension.getURL("images/1.jpg");
     newArrayDiv.id = "newArrayDiv";
-    newArrayDiv.style.cssText = 'z-index\:20000111;position\:fixed;top\:10px;left\:10px;height\:755px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;opacity\:\.85;background-color\:transparent;border-radius\:6px;border:3px solid gray;background-image\:url(' + bgImage + ');box-shadow: 1px 1px 0\.5px #555555';
+    newArrayDiv.style.cssText = 'z-index\:20000111;position\:fixed;top\:10px;left\:10px;height\:755px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;opacity\:\.85;background-color\:transparent;border-radius\:6px;border:3px solid gray;background-image\:url(' + bgImage + ');box-shadow: 1px 1px 0\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
     document.body.appendChild(newArrayDiv);
 
     //add attributes to window for closing and background config
