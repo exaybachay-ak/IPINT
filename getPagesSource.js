@@ -69,7 +69,7 @@ function DOMtoString(document_root) {
         var tmWindow = document.createElement('iframe');
         tmWindow.id = tmIframeName;
         tmWindow.value = tmIframeName;
-        tmWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0; overflow: scroll;z-index\:0;border-radius\:6px;border:2px solid gray;box-shadow\: 5px 5px 2\.5px #555555;';
+        tmWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0; overflow: scroll;z-index\:0;border-radius\:6px;border:2px solid gray;box-shadow\: 5px 5px 2\.5px #555555';
         tmWindow.className = 'windows';
         tmWindow.src = tm;
 
@@ -80,7 +80,7 @@ function DOMtoString(document_root) {
         tmToggleDiv.id = tmToggleDivName;
         tmToggleDiv.Name = tmToggleDivName;
         tmToggleDiv.value = tmToggleDivName;
-        tmToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:187px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
+        tmToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:187px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;display:table-cell; vertical-align:middle;padding: 1em 1em 1em 1em;';
         tmToggleDiv.className = 'toggletmDiv';
         //set the text to append to this div
         tmToggleDivText.innerText += "ThreatMiner";
@@ -93,7 +93,7 @@ function DOMtoString(document_root) {
         var tcWindow = document.createElement('iframe');
         tcWindow.id = tcIframeName;
         tcWindow.value = tcIframeName;
-        tcWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0; overflow: scroll;z-index\:0;border-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;';
+        tcWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0; overflow: scroll;z-index\:0;border-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555';
         tcWindow.className = 'windows';
         tcWindow.src = tc;
 
@@ -104,7 +104,7 @@ function DOMtoString(document_root) {
         tcToggleDiv.id = tcToggleDivName;
         tcToggleDiv.Name = tcToggleDivName;
         tcToggleDiv.value = tcToggleDivName;
-        tcToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:287px;height\:39px;width\:100px;color\:white;opacity\:0\.0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
+        tcToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:287px;height\:39px;width\:100px;color\:white;opacity\:0\.0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;display:table-cell; vertical-align:middle;padding: 1em 1em 1em 1em;';
         tcToggleDiv.className = 'toggletcDiv';
         //set the text to append to this div
         tcToggleDivText.innerText += "ThreatCrowd";
@@ -117,10 +117,10 @@ function DOMtoString(document_root) {
         var aipdbWindow = document.createElement('iframe');
         aipdbWindow.id = aipdbIframeName;
         aipdbWindow.value = aipdbIframeName;
-        aipdbWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0; overflow: scroll;z-index\:0;border-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;';
+        aipdbWindow.style.cssText= 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0; overflow: scroll;z-index\:0;border-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;';
         aipdbWindow.className = 'windows';
         aipdbWindow.src = abuseipdb;
-      
+        
         //set abuseipdb toggle div
         var aipdbToggleDiv = document.createElement('div');
         var aipdbToggleDivName = "aipdbToggleDiv" + h;
@@ -129,7 +129,7 @@ function DOMtoString(document_root) {
         aipdbToggleDiv.Name = aipdbToggleDivName;
         aipdbToggleDiv.value = aipdbToggleDivName;
         var bgImage = chrome.extension.getURL("images/1.jpg");
-        aipdbToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:387px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
+        aipdbToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:387px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border:2px solid gray;box-shadow: 5px 5px 2\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;display:table-cell; vertical-align:middle;padding: 1em 1em 1em 1em;';
         aipdbToggleDiv.className = 'toggleAIPDBDiv';
         //set the text to append to this div
         aipdbToggleDivText.innerText += "AbuseIPDB";
@@ -153,7 +153,7 @@ function DOMtoString(document_root) {
     var newArrayDiv = document.createElement("div");
     var bgImage = chrome.extension.getURL("images/1.jpg");
     newArrayDiv.id = "newArrayDiv";
-    newArrayDiv.style.cssText = 'z-index\:20000111;position\:fixed;top\:10px;left\:10px;height\:755px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;opacity\:\.85;background-color\:transparent;border-radius\:6px;border:3px solid gray;background-image\:url(' + bgImage + ');box-shadow: 1px 1px 0\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
+    newArrayDiv.style.cssText = 'z-index\:20000111;position\:fixed;top\:10px;left\:10px;height\:755px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;opacity\:1;background-color\:transparent;border-radius\:6px;border:3px solid gray;background-image\:url(' + bgImage + ');box-shadow: 1px 1px 0\.5px #555555;font-family: Arial;font-size: 12px;-webkit-font-smoothing: antialiased;line-height: 17px';
     document.body.appendChild(newArrayDiv);
 
     //add attributes to window for closing and background config
@@ -231,7 +231,7 @@ function DOMtoString(document_root) {
             var virusTotal = "https://www.virustotal.com/en/ip-address/" + myArray[index] + "/information/";
             
             //if topbar is loaded already, tear it down and close things out
-            if ( $(tmToggleHandle).css('opacity') === '0\.85' ){
+            if ( $(tmToggleHandle).css('opacity') === '1' ){
                 
                 $('.windows').each(function() {
                     $(this).css('display', 'none');
@@ -274,19 +274,19 @@ function DOMtoString(document_root) {
                 });
 
                 $('.windows').each(function() {
-                    $(tmHandle).css('opacity', '0\.85');
+                    $(tmHandle).css('opacity', '1');
                     $(tmHandle).css('display', 'unset');
                     $(tmHandle).css('z-index', '20000000');
 
-                    $(tmToggleHandle).css('opacity', '0\.85');
+                    $(tmToggleHandle).css('opacity', '1');
                     $(tmToggleHandle).css('display', 'unset');
                     $(tmToggleHandle).css('z-index', '20000000');
 
-                    $(tcToggleHandle).css('opacity', '0\.85');
+                    $(tcToggleHandle).css('opacity', '1');
                     $(tcToggleHandle).css('display', 'unset');
                     $(tcToggleHandle).css('z-index', '20000000');
                     
-                    $(aipdbToggleHandle).css('opacity', '0\.85');
+                    $(aipdbToggleHandle).css('opacity', '1');
                     $(aipdbToggleHandle).css('display', 'unset');
                     $(aipdbToggleHandle).css('z-index', '20000000');                    
                 });
@@ -301,7 +301,7 @@ function DOMtoString(document_root) {
                         $(this).css('display', 'none');
                     });    
                     
-                    $(tmHandle).css('opacity', '0\.85');
+                    $(tmHandle).css('opacity', '1');
                     $(tmHandle).css('z-index', '20000002');
                     $(tmHandle).css('display', 'unset');
                 })
@@ -316,7 +316,7 @@ function DOMtoString(document_root) {
                         $(this).css('display', 'none');
                     });    
                     
-                    $(tcHandle).css('opacity', '0\.85');
+                    $(tcHandle).css('opacity', '1');
                     $(tcHandle).css('z-index', '20000001');
                     $(tcHandle).css('display', 'unset');
                 })                
@@ -331,7 +331,7 @@ function DOMtoString(document_root) {
                         $(this).css('display', 'none');
                     });
                     
-                    $(aipdbHandle).css('opacity', '0\.85');
+                    $(aipdbHandle).css('opacity', '1');
                     $(aipdbHandle).css('z-index', '20000000');
                     $(aipdbHandle).css('display', 'unset');
                 }) 
