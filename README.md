@@ -4,12 +4,12 @@ Chrome extension written in Javascript.  Completely stand-alone addition to Chro
 Current version can be used to assist in incident response and ongoing SOC investigation processes.  Future plans include the ability to read page data and color IP address based on detection by sites.
 
 TO INSTALL:
--download and unzip files from github repo
--open Chrome
--browse to "chrome://extensions"
--check box for "Developer mode"
--click on "Load unpacked extension..."
--browse to the unpacked repo directory and select "Open"
+<li>download and unzip files from github repo</li>
+<li>open Chrome</li>
+<li>browse to "chrome://extensions"</li>
+<li>check box for "Developer mode"</li>
+<li>click on "Load unpacked extension..."</li>
+<li>browse to the unpacked repo directory and select "Open"</li>
 
 Initial version includes:
 
