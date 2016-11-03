@@ -61,13 +61,13 @@ function DOMtoString(document_root) {
         var abuseipdb = "https\://www\.abuseipdb\.com/check/" + myArray[h];
         var vt = "https://www.virustotal.com/en/ip-address/" + myArray[h]; + "/Information/"
         var bgImage = chrome.extension.getURL("images/1.jpg");
-    
+
         //set threatminer iframe
         var tmIframeName = "tmIframe" + h;
         var tmWindow = document.createElement('iframe');
         tmWindow.id = tmIframeName;
         tmWindow.value = tmIframeName;
-        tmWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+        tmWindow.style.cssText = 'display\:none;position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
         tmWindow.className = 'windows';
         tmWindow.src = tm;
 
@@ -78,7 +78,7 @@ function DOMtoString(document_root) {
         tmToggleDiv.id = tmToggleDivName;
         tmToggleDiv.Name = tmToggleDivName;
         tmToggleDiv.value = tmToggleDivName;
-        tmToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:187px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        tmToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:11px;left\:187px;height\:39px;width\:100px;color\:white;z-index\:0;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
         tmToggleDiv.className = 'toggletmDiv';
         //set the text to append to this div
         tmToggleDivText.innerText += "ThreatMiner";
@@ -91,7 +91,7 @@ function DOMtoString(document_root) {
         var tcWindow = document.createElement('iframe');
         tcWindow.id = tcIframeName;
         tcWindow.value = tcIframeName;
-        tcWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+        tcWindow.style.cssText = 'display\:none;position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
         tcWindow.className = 'windows';
         tcWindow.src = tc;
 
@@ -102,7 +102,7 @@ function DOMtoString(document_root) {
         tcToggleDiv.id = tcToggleDivName;
         tcToggleDiv.Name = tcToggleDivName;
         tcToggleDiv.value = tcToggleDivName;
-        tcToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:287px;height\:39px;width\:100px;color\:white;opacity\:0\.0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        tcToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:11px;left\:287px;height\:39px;width\:100px;color\:white;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
         tcToggleDiv.className = 'toggletcDiv';
         //set the text to append to this div
         tcToggleDivText.innerText += "ThreatCrowd";
@@ -115,7 +115,7 @@ function DOMtoString(document_root) {
         var aipdbWindow = document.createElement('iframe');
         aipdbWindow.id = aipdbIframeName;
         aipdbWindow.value = aipdbIframeName;
-        aipdbWindow.style.cssText = 'position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;opacity\:0\.0;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+        aipdbWindow.style.cssText = 'display\:none;position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
         aipdbWindow.className = 'windows';
         aipdbWindow.src = abuseipdb;
       
@@ -127,7 +127,7 @@ function DOMtoString(document_root) {
         aipdbToggleDiv.Name = aipdbToggleDivName;
         aipdbToggleDiv.value = aipdbToggleDivName;
         var bgImage = chrome.extension.getURL("images/1.jpg");
-        aipdbToggleDiv.style.cssText = 'position\:fixed;top\:11px;left\:387px;height\:39px;width\:100px;color\:white;opacity\:0\.0;z-index\:0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        aipdbToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:11px;left\:387px;height\:39px;width\:100px;color\:white;z-index\:0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
         aipdbToggleDiv.className = 'toggleAIPDBDiv';
         //set the text to append to this div
         aipdbToggleDivText.innerText += "AbuseIPDB";
@@ -158,7 +158,7 @@ function DOMtoString(document_root) {
     var closeButton = document.createElement("div");
     var buttonImage = chrome.extension.getURL("images/r1.png");
     closeButton.id = "closeButton";
-    closeButton.style.cssText = 'z-index\:120000000;position\:fixed;top\:10px;left\:10px;max-height\:25%;max-width\:25%;background-image\:url(' + buttonImage + ')';
+    closeButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:10px;left\:10px;max-height\:25%;max-width\:25%;background-image\:url(' + buttonImage + ')';
     var buttonImg = document.createElement("img");
     buttonImg.style.cssText = 'z-index\:120000002;position\:fixed;top\:15px;left\:15px;max-height\:2%;max-width\:2%';
     buttonImg.id = "buttonImage";
@@ -201,7 +201,7 @@ function DOMtoString(document_root) {
         newArrayText.className = "IPAddy";
         newArrayText.value += myArray[i];
         newArrayText.className = "toggleme";
-        newArrayText.style.cssText = 'background-color:transparent';
+        newArrayText.style.cssText = 'background-color\:transparent;cursor\:pointer';
         document.getElementById("newArrayDiv").appendChild(newArrayText);
     }
 
@@ -246,16 +246,19 @@ function DOMtoString(document_root) {
                 $(tmHandle).css('z-index', '0');
                 $(tmToggleHandle).css('display', 'none');
                 $(tmToggleHandle).css('z-index', '0');
+                $(tmToggleHandle).css('cursor', 'pointer');
 
                 $(tcHandle).css('display', 'none');
                 $(tcHandle).css('z-index', '0');
                 $(tcToggleHandle).css('display', 'none');
                 $(tcToggleHandle).css('z-index', '0');
+                $(tcToggleHandle).css('cursor', 'pointer');
                 
                 $(aipdbHandle).css('display', 'none');
                 $(aipdbHandle).css('z-index', '0');
                 $(aipdbToggleHandle).css('display', 'none');
                 $(aipdbToggleHandle).css('z-index', '0');                
+                $(aipdbToggleHandle).css('cursor', 'pointer');
             }
             //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
             else {
@@ -284,12 +287,15 @@ function DOMtoString(document_root) {
 
                     $(tmToggleHandle).css('display', 'unset');
                     $(tmToggleHandle).css('z-index', '120000000');
+                    $(tmToggleHandle).css('cursor', 'pointer');
 
                     $(tcToggleHandle).css('display', 'unset');
                     $(tcToggleHandle).css('z-index', '120000000');
-                    
+                    $(tcToggleHandle).css('cursor', 'pointer');
+                
                     $(aipdbToggleHandle).css('display', 'unset');
                     $(aipdbToggleHandle).css('z-index', '120000000');                    
+                    $(aipdbToggleHandle).css('cursor', 'pointer');
                 });
             };
 
