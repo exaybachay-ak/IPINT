@@ -236,7 +236,7 @@ function DOMtoString(document_root) {
             var virusTotal = "https://www.virustotal.com/en/ip-address/" + myArray[index] + "/information/";
             
             //if topbar is loaded already, tear it down and close things out
-            if ( $(tmToggleHandle).css('display') === 'unset' ){
+            if ( $(tmToggleHandle).css('display') === ('unset') ){
                 
                 $('.windows').each(function() {
                     $(this).css('display', 'none');
@@ -246,19 +246,16 @@ function DOMtoString(document_root) {
                 $(tmHandle).css('z-index', '0');
                 $(tmToggleHandle).css('display', 'none');
                 $(tmToggleHandle).css('z-index', '0');
-                $(tmToggleHandle).css('cursor', 'pointer');
-
+   
                 $(tcHandle).css('display', 'none');
                 $(tcHandle).css('z-index', '0');
                 $(tcToggleHandle).css('display', 'none');
                 $(tcToggleHandle).css('z-index', '0');
-                $(tcToggleHandle).css('cursor', 'pointer');
                 
                 $(aipdbHandle).css('display', 'none');
                 $(aipdbHandle).css('z-index', '0');
                 $(aipdbToggleHandle).css('display', 'none');
                 $(aipdbToggleHandle).css('z-index', '0');                
-                $(aipdbToggleHandle).css('cursor', 'pointer');
             }
             //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
             else {
@@ -307,8 +304,18 @@ function DOMtoString(document_root) {
                         $(this).css('display', 'none');
                     });    
                     
+                    $('.toggletcDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+                    $('.toggleAIPDBDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+
                     $(tmHandle).css('z-index', '120000002');
                     $(tmHandle).css('display', 'unset');
+                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 })
             });
 
@@ -319,9 +326,18 @@ function DOMtoString(document_root) {
                         $(this).css('z-index', '0');
                         $(this).css('display', 'none');
                     });    
-                    
+
+                    $('.toggletmDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+                   
+                    $('.toggleAIPDBDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
                     $(tcHandle).css('z-index', '120000001');
                     $(tcHandle).css('display', 'unset');
+                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 })                
             });
 
@@ -333,8 +349,17 @@ function DOMtoString(document_root) {
                         $(this).css('display', 'none');
                     });
                     
+                    $('.toggletmDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+                   
+                    $('.toggletcDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
                     $(aipdbHandle).css('z-index', '120000000');
                     $(aipdbHandle).css('display', 'unset');
+                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 }) 
             }); 
         });
