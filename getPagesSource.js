@@ -56,10 +56,11 @@ function DOMtoString(document_root) {
     */
     for (h = 0; h < myArray.length; h++) {
         //set website targets using matched IP address information to set URLs
-        var tm = "https://www.threatminer.org/host.php?q=" + myArray[h];
+        var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[h];
         var tc = "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[h];
         var abuseipdb = "https\://www\.abuseipdb\.com/check/" + myArray[h];
-        var vt = "https://www.virustotal.com/en/ip-address/" + myArray[h]; + "/Information/"
+        var vt = "https\://www\.virustotal\.com/en/ip-address/" + myArray[h]; + "/Information/";
+        var rt = "https\://www\.robtex\.com/?dns=" + myArray[h];
         var bgImage = chrome.extension.getURL("images/1.jpg");
 
         //set threatminer iframe
@@ -67,7 +68,7 @@ function DOMtoString(document_root) {
         var tmWindow = document.createElement('iframe');
         tmWindow.id = tmIframeName;
         tmWindow.value = tmIframeName;
-        tmWindow.style.cssText = 'display\:none;position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+        tmWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
         tmWindow.className = 'windows';
         tmWindow.src = tm;
 
@@ -78,7 +79,7 @@ function DOMtoString(document_root) {
         tmToggleDiv.id = tmToggleDivName;
         tmToggleDiv.Name = tmToggleDivName;
         tmToggleDiv.value = tmToggleDivName;
-        tmToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:11px;left\:187px;height\:39px;width\:100px;color\:white;z-index\:0;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        tmToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
         tmToggleDiv.className = 'toggletmDiv';
         //set the text to append to this div
         tmToggleDivText.innerText += "ThreatMiner";
@@ -91,7 +92,7 @@ function DOMtoString(document_root) {
         var tcWindow = document.createElement('iframe');
         tcWindow.id = tcIframeName;
         tcWindow.value = tcIframeName;
-        tcWindow.style.cssText = 'display\:none;position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+        tcWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
         tcWindow.className = 'windows';
         tcWindow.src = tc;
 
@@ -102,7 +103,7 @@ function DOMtoString(document_root) {
         tcToggleDiv.id = tcToggleDivName;
         tcToggleDiv.Name = tcToggleDivName;
         tcToggleDiv.value = tcToggleDivName;
-        tcToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:11px;left\:287px;height\:39px;width\:100px;color\:white;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        tcToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:500px;height\:39px;width\:100px;color\:white;background-color\:transparent;z-index\:120000111;border-bottom-right-radius\:6px;border-top-right-radius\:6px;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
         tcToggleDiv.className = 'toggletcDiv';
         //set the text to append to this div
         tcToggleDivText.innerText += "ThreatCrowd";
@@ -115,7 +116,7 @@ function DOMtoString(document_root) {
         var aipdbWindow = document.createElement('iframe');
         aipdbWindow.id = aipdbIframeName;
         aipdbWindow.value = aipdbIframeName;
-        aipdbWindow.style.cssText = 'display\:none;position\:fixed;top\:52px;left\:187px;height\:709px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+        aipdbWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
         aipdbWindow.className = 'windows';
         aipdbWindow.src = abuseipdb;
       
@@ -127,18 +128,44 @@ function DOMtoString(document_root) {
         aipdbToggleDiv.Name = aipdbToggleDivName;
         aipdbToggleDiv.value = aipdbToggleDivName;
         var bgImage = chrome.extension.getURL("images/1.jpg");
-        aipdbToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:11px;left\:387px;height\:39px;width\:100px;color\:white;z-index\:0;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        aipdbToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:400px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
         aipdbToggleDiv.className = 'toggleAIPDBDiv';
         //set the text to append to this div
         aipdbToggleDivText.innerText += "AbuseIPDB";
         //attach the DIV to the webpage
         document.body.appendChild(aipdbToggleDiv);
         document.getElementById(aipdbToggleDivName).appendChild(aipdbToggleDivText);
-                
+
+        //set robtex iframe
+        var rtIframeName = "rtIframe" + h;
+        var rtWindow = document.createElement('iframe');
+        rtWindow.id = rtIframeName;
+        rtWindow.value = rtIframeName;
+        rtWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+        rtWindow.className = 'windows';
+        rtWindow.src = rt;
+
+        //set robtex toggle div
+        var rtToggleDiv = document.createElement('div');
+        var rtToggleDivName = "rtToggleDiv" + h;
+        var rtToggleDivText = document.createElement('p');
+        rtToggleDiv.id = rtToggleDivName;
+        rtToggleDiv.Name = rtToggleDivName;
+        rtToggleDiv.value = rtToggleDivName;
+        rtToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:300px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        rtToggleDiv.className = 'togglertDiv';
+        //set the text to append to this div
+        rtToggleDivText.innerText += "robtex";
+        //attach the DIV to the webpage
+        document.body.appendChild(rtToggleDiv);
+        document.getElementById(rtToggleDivName).appendChild(rtToggleDivText);
+               
         //attach iframes to document
         document.body.appendChild(aipdbWindow);
         document.body.appendChild(tcWindow);
         document.body.appendChild(tmWindow);
+        document.body.appendChild(rtWindow);
+        document.getElementById(rtIframeName).name = rtIframeName;
         document.getElementById(aipdbIframeName).name = aipdbIframeName;
         document.getElementById(tcIframeName).name = tcIframeName;
         document.getElementById(tmIframeName).name = tmIframeName;
@@ -184,6 +211,11 @@ function DOMtoString(document_root) {
         $('.toggleAIPDBDiv').each(function() {
             $(this).css('display', 'none');
         });
+
+        $('.togglertDiv').each(function() {
+            $(this).css('display', 'none');
+        });
+
     });
 
     //attach close button to DOM
@@ -225,6 +257,8 @@ function DOMtoString(document_root) {
             var tcToggleNameToggle = "tcToggleDiv" + index;
             var aipdbIframeNameToggle = "aipdbIframe" + index;
             var aipdbToggleNameToggle = "aipdbToggleDiv" + index;
+            var rtIframeNameToggle = "rtIframe" + index;
+            var rtToggleNameToggle = "rtToggleDiv" + index;
             //attach handles to DOM, making elements visible
             var tmHandle = document.getElementById(tmIframeNameToggle);
             var tmToggleHandle = document.getElementById(tmToggleNameToggle);
@@ -232,8 +266,11 @@ function DOMtoString(document_root) {
             var tcToggleHandle = document.getElementById(tcToggleNameToggle);
             var aipdbHandle = document.getElementById(aipdbIframeNameToggle);
             var aipdbToggleHandle = document.getElementById(aipdbToggleNameToggle);
-            //initialize virustotal URL for window loading
-            var virusTotal = "https://www.virustotal.com/en/ip-address/" + myArray[index] + "/information/";
+            var rtHandle = document.getElementById(rtIframeNameToggle);
+            var rtToggleHandle = document.getElementById(rtToggleNameToggle);
+            //initialize virustotal and alienvault URLs for window loading
+            var virusTotal = "https\://www\.virustotal\.com/en/ip-address/" + myArray[index] + "/information/";
+            var alienvault = "https\://otx\.alienvault\.com/browse/pulses/?q=" + myArray[index] + "";
             
             //if topbar is loaded already, tear it down and close things out
             if ( $(tmToggleHandle).css('display') === ('unset') ){
@@ -256,10 +293,16 @@ function DOMtoString(document_root) {
                 $(aipdbHandle).css('z-index', '0');
                 $(aipdbToggleHandle).css('display', 'none');
                 $(aipdbToggleHandle).css('z-index', '0');                
+
+                $(rtHandle).css('display', 'none');
+                $(rtHandle).css('z-index', '0');
+                $(rtToggleHandle).css('display', 'none');
+                $(rtToggleHandle).css('z-index', '0');
             }
             //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
-            else {
-                window.open(virusTotal, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=1300,width=483,height=860");
+            else {            
+                window.open(virusTotal, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=1425,width=483,height=860");
+                window.open(alienvault, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=933,width=483,height=860");
 
                 //hide all iframes and divs before loading the new batch, to avoid a user clicking one ip and then another without first toggling/closing the initial IP
                 $('.windows').each(function() {
@@ -278,21 +321,29 @@ function DOMtoString(document_root) {
                     $(this).css('display', 'none');
                 });
 
+                $('.togglertDiv').each(function() {
+                    $(this).css('display', 'none');
+                });
+
                 $('.windows').each(function() {
                     $(tmHandle).css('display', 'unset');
                     $(tmHandle).css('z-index', '120000000');
 
                     $(tmToggleHandle).css('display', 'unset');
-                    $(tmToggleHandle).css('z-index', '120000000');
+                    $(tmToggleHandle).css('z-index', '120000001');
                     $(tmToggleHandle).css('cursor', 'pointer');
 
                     $(tcToggleHandle).css('display', 'unset');
-                    $(tcToggleHandle).css('z-index', '120000000');
+                    $(tcToggleHandle).css('z-index', '120000003');
                     $(tcToggleHandle).css('cursor', 'pointer');
                 
                     $(aipdbToggleHandle).css('display', 'unset');
-                    $(aipdbToggleHandle).css('z-index', '120000000');                    
+                    $(aipdbToggleHandle).css('z-index', '120000002');                    
                     $(aipdbToggleHandle).css('cursor', 'pointer');
+
+                    $(rtToggleHandle).css('display', 'unset');
+                    $(rtToggleHandle).css('z-index', '120000001');                    
+                    $(rtToggleHandle).css('cursor', 'pointer');
                 });
             };
 
@@ -312,8 +363,11 @@ function DOMtoString(document_root) {
                         $(this).css('text-shadow', 'none');
                     });
 
+                    $('.togglertDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
 
-                    $(tmHandle).css('z-index', '120000002');
+                    $(tmHandle).css('z-index', '120000000');
                     $(tmHandle).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 })
@@ -335,7 +389,11 @@ function DOMtoString(document_root) {
                         $(this).css('text-shadow', 'none');
                     });
 
-                    $(tcHandle).css('z-index', '120000001');
+                    $('.togglertDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+                    $(tcHandle).css('z-index', '120000000');
                     $(tcHandle).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 })                
@@ -357,15 +415,47 @@ function DOMtoString(document_root) {
                         $(this).css('text-shadow', 'none');
                     });
 
+                    $('.togglertDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
                     $(aipdbHandle).css('z-index', '120000000');
                     $(aipdbHandle).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 }) 
-            }); 
-        });
+            });
+
+            //if user clicks on the Robtex div, hide all other iframes and display the tobtex OSINT        
+            $('.togglertDiv').each(function(q) {
+                $(this).on("click", function(r) {
+                    $('.windows').each(function(s) {
+                        $(this).css('z-index', '0');
+                        $(this).css('display', 'none');
+                    });    
+                    
+                    $('.toggletmDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+                   
+                    $('.toggletcDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+                    $('.toggleAIPDBDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+                    
+                    $(rtHandle).css('z-index', '120000000');
+                    $(rtHandle).css('display', 'unset');
+                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+
+                });
+            });
     });
     
     return newArray;
+});
+
 }
 
 chrome.runtime.sendMessage({
