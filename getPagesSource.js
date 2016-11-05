@@ -4,7 +4,9 @@
     Demo: var serialized_html = DOMtoString(document);
     New IPINT Overlay AUTHOR
     @author Jacob Kelley / exaybachay 
+
 *** Step 1
+**********
 *   Read the current window into memory to review and use for updating window
 */
 function DOMtoString(document_root) {
@@ -33,6 +35,7 @@ function DOMtoString(document_root) {
     }
 
     /** Step 2
+    **********
     *   Use data from current browser webpage to find IP addresses and investigate them
     *
     *   Step 2a
@@ -48,7 +51,9 @@ function DOMtoString(document_root) {
     */
     var newArray = myArray.join("\n");
     
+
     /** Step 3
+    **********
     *   Make sidebar to control opening and closing OSINT frames
     */
     //make DOM elements to bind array to
@@ -68,38 +73,17 @@ function DOMtoString(document_root) {
     buttonImg.id = "buttonImage";
     buttonImg.src = buttonImage;
     
-    //Set function to close out sidebar
+    //Set function to close out sidebar and all divs
     $(buttonImg).click(function() {
-        $(newArrayDiv).css('z-index', '0');
-        $(newArrayDiv).css('display', 'none');
- 
         $('.windows').each(function() {
-            $(this).css('display', 'none');
             $(this).remove();
         });
 
-        $('.toggletmDiv').each(function() {
-            $(this).css('display', 'none');
-            $(this).remove();
-        });
-
-        $('.toggletcDiv').each(function() {
-            $(this).css('display', 'none');
-            $(this).remove();
-        });
-
-        $('.toggleAIPDBDiv').each(function() {
-            $(this).css('display', 'none');
-            $(this).remove();
-        });
-
-        $('.togglertDiv').each(function() {
-            $(this).css('display', 'none');
+        $('.toggleDiv').each(function() {
             $(this).remove();
         });
 
         $('#newArrayDiv').remove();
-
     });
 
     //attach close button to DOM
@@ -121,7 +105,8 @@ function DOMtoString(document_root) {
         document.getElementById("newArrayDiv").appendChild(newArrayText);
     }
 
-    /** Step 4 
+    /*** Step 4 
+    ***********
     *   Create and arm events to unhide OSINT iframes for analysis
     */
     $( ".toggleme" ).each(function(index) {
@@ -163,40 +148,22 @@ function DOMtoString(document_root) {
                     $(this).css('display', 'none');
                 });
 
-                $(tmHandle).css('display', 'none');
-                $(tmHandle).css('z-index', '0');
-                $(tmToggleHandle).css('display', 'none');
-                $(tmToggleHandle).css('z-index', '0');
-   
-                $(tcHandle).css('display', 'none');
-                $(tcHandle).css('z-index', '0');
-                $(tcToggleHandle).css('display', 'none');
-                $(tcToggleHandle).css('z-index', '0');
-                
-                $(aipdbHandle).css('display', 'none');
-                $(aipdbHandle).css('z-index', '0');
-                $(aipdbToggleHandle).css('display', 'none');
-                $(aipdbToggleHandle).css('z-index', '0');                
-
-                $(rtHandle).css('display', 'none');
-                $(rtHandle).css('z-index', '0');
-                $(rtToggleHandle).css('display', 'none');
-                $(rtToggleHandle).css('z-index', '0');
+                $('.toggleDiv').each(function() {
+                    $(this).css('display', 'none');
+                    $(this).css('z-index', '0')
+                });
             }
             //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
             else {            
-                //window.open(virusTotal, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=1425,width=483,height=860");
-                //window.open(alienvault, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=933,width=483,height=860");
+                window.open(virusTotal, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=1425,width=483,height=860");
+                window.open(alienvault, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=933,width=483,height=860");
 
                 //hide all iframes and divs before loading the new batch, to avoid a user clicking one ip and then another without first toggling/closing the initial IP
                 $('.windows').each(function() {
                     $(this).remove();
                 });
 
-                $('.toggletmDiv').remove()
-                $('.togglertDiv').remove()
-                $('.toggleAIPDBDiv').remove()
-                $('.toggletcDiv').remove()
+                $('.toggleDiv').remove()
 
                 var bgImage = chrome.extension.getURL("images/1.jpg");
                 var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
@@ -209,12 +176,12 @@ function DOMtoString(document_root) {
                 tmWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
                 tmWindow.className = 'windows';
                 tmWindow.src = tm;
-
+                //attach the iframe to the webpage
                 document.body.appendChild(tmWindow);
                 document.getElementById(tmIframeName).name = tmIframeName;
 
-                $(tmHandle).css('z-index', '120000000');
-                $(tmHandle).css('display', 'unset');
+                //$(tmHandle).css('z-index', '120000000');
+                //$(tmHandle).css('display', 'unset');
                 $(tmWindow).css('z-index', '120000000');
                 $(tmWindow).css('display', 'unset');
 
@@ -225,8 +192,8 @@ function DOMtoString(document_root) {
                 tmToggleDiv.id = tmToggleDivName;
                 tmToggleDiv.Name = tmToggleDivName;
                 tmToggleDiv.value = tmToggleDivName;
-                tmToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                tmToggleDiv.className = 'toggletmDiv';
+                tmToggleDiv.style.cssText = 'text-shadow\: 0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00;cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                tmToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 tmToggleDivText.innerText += "ThreatMiner";
                 //attach the DIV to the webpage
@@ -241,7 +208,7 @@ function DOMtoString(document_root) {
                 rtToggleDiv.Name = rtToggleDivName;
                 rtToggleDiv.value = rtToggleDivName;
                 rtToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:300px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                rtToggleDiv.className = 'togglertDiv';
+                rtToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 rtToggleDivText.innerText += "robtex";
                 //attach the DIV to the webpage
@@ -255,7 +222,7 @@ function DOMtoString(document_root) {
                 aipdbToggleDiv.id = aipdbToggleDivName;
                 aipdbToggleDiv.Name = aipdbToggleDivName;
                 aipdbToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:400px;height\:39px;width\:100px;color\:white;z-index\:120000115;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                aipdbToggleDiv.className = 'toggleAIPDBDiv';
+                aipdbToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 aipdbToggleDivText.innerText += "AbuseIPDB";
                 //attach the DIV to the webpage
@@ -270,42 +237,31 @@ function DOMtoString(document_root) {
                 tcToggleDiv.Name = tcToggleDivName;
                 tcToggleDiv.value = tcToggleDivName;
                 tcToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:500px;height\:39px;width\:100px;color\:white;z-index\:120000116;background-color\:transparent;border-bottom-right-radius\:6px;border-top-right-radius\:6px;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                tcToggleDiv.className = 'toggletcDiv';
+                tcToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 tcToggleDivText.innerText += "ThreatCrowd";
                 //attach the DIV to the webpage
                 document.body.appendChild(tcToggleDiv);
                 document.getElementById(tcToggleDivName).appendChild(tcToggleDivText);
 
+                //unhide OSINT service toggle divs
                 $('.windows').each(function() {
                     $(tmHandle).css('display', 'unset');
                     $(tmHandle).css('z-index', '120000111');
 
-                    $(tmToggleHandle).css('display', 'unset');
-                    $(tmToggleHandle).css('z-index', '120000001');
-                    $(tmToggleHandle).css('cursor', 'pointer');
-
-                    $(tcToggleHandle).css('display', 'unset');
-                    $(tcToggleHandle).css('z-index', '120000003');
-                    $(tcToggleHandle).css('cursor', 'pointer');
-                
-                    $(aipdbToggleHandle).css('display', 'unset');
-                    $(aipdbToggleHandle).css('z-index', '120000002');                    
-                    $(aipdbToggleHandle).css('cursor', 'pointer');
-
-                    $(rtToggleHandle).css('display', 'unset');
-                    $(rtToggleHandle).css('z-index', '120000001');                    
-                    $(rtToggleHandle).css('cursor', 'pointer');
+                    $('.toggleDiv').each(function() {
+                        $(this).css('display', 'unset');
+                        $(this).css('z-index', '120000001');
+                        $(this).css('cursor', 'pointer');
+                    });
                 });
-            };
 
-            //if user clicks on the ThreatMiner div, hide all other iframes and display the TM OSINT
-            $('.toggletmDiv').each(function(n) {
-                $(this).on("click", function(o) {
+                //if user clicks on the ThreatMiner div, hide all other iframes and display the TM OSINT
+                $('#tmToggleDiv').on("click", function() {
                     var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
 
                     //set threatminer iframe
-                    var tmIframeName = "tmIframe";
+                    var tmIframeName = "tmIframe" + index;
                     var tmWindow = document.createElement('iframe');
                     tmWindow.id = tmIframeName;
                     tmWindow.value = tmIframeName;
@@ -313,41 +269,33 @@ function DOMtoString(document_root) {
                     tmWindow.className = 'windows';
                     tmWindow.src = tm;
 
+                    //add TM iframe to document to make it visible
                     document.body.appendChild(tmWindow);
                     document.getElementById(tmIframeName).name = tmIframeName;
 
-                    $('.windows').each(function(p) {
+                    //hide all windows before showing TM window
+                    $('.windows').each(function() {
                         $(this).css('z-index', '0');
                         $(this).css('display', 'none');
-                    });    
-                    
-                    $('.toggletcDiv').each(function(j) {
+                    });
+
+                    //turn off red text glow before setting it on TM div                    
+                    $('.toggleDiv').each(function() {
                         $(this).css('text-shadow', 'none');
                     });
 
-                    $('.toggleAIPDBDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $('.togglertDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $(tmHandle).css('z-index', '120000000');
-                    $(tmHandle).css('display', 'unset');
+                    //show TM window and set text to glowing red
                     $(tmWindow).css('z-index', '120000000');
                     $(tmWindow).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-                })
-            });
+                });
 
-            //if user clicks on the Robtex div, hide all other iframes and display the tobtex OSINT        
-            $('.togglertDiv').each(function(q) {
-                $(this).on("click", function(r) {
+                //if user clicks on the Robtex div, hide all other iframes and display the robtex OSINT        
+                $('#rtToggleDiv').on("click", function() {
                     var rt = "https\://www\.robtex\.com/?dns=" + myArray[index];
 
                     //set robtex iframe
-                    var rtIframeName = "rtIframe";
+                    var rtIframeName = "rtIframe" + index;
                     var rtWindow = document.createElement('iframe');
                     rtWindow.id = rtIframeName;
                     rtWindow.value = rtIframeName;
@@ -355,42 +303,33 @@ function DOMtoString(document_root) {
                     rtWindow.className = 'windows';
                     rtWindow.src = rt;
 
+                    //add TM iframe to document to make it visible
                     document.body.appendChild(rtWindow);
                     document.getElementById(rtIframeName).name = rtIframeName;
 
-                    $('.windows').each(function(s) {
+                    //hide all windows before showing RT window
+                    $('.windows').each(function() {
                         $(this).css('z-index', '0');
                         $(this).css('display', 'none');
-                    });    
-                    
-                    $('.toggletmDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
                     });
-                   
-                    $('.toggletcDiv').each(function(j) {
+
+                    //turn off red text glow before setting it on RT div                                        
+                    $('.toggleDiv').each(function() {
                         $(this).css('text-shadow', 'none');
                     });
 
-                    $('.toggleAIPDBDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-                    
-                    $(rtHandle).css('z-index', '120000000');
-                    $(rtHandle).css('display', 'unset');
+                    //show RT window and set text to glowing red
                     $(rtWindow).css('z-index', '120000000');
                     $(rtWindow).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-
                 });
-            });
 
-            //if user clicks on the AbuseIPDB div, hide all other iframes and display the AIPDB OSINT
-            $('.toggleAIPDBDiv').each(function(h) {
-                $(this).on("click", function(i) {
+                //if user clicks on the AbuseIPDB div, hide all other iframes and display the AIPDB OSINT
+                $('#aipdbToggleDiv').on("click", function() {
                     var abuseipdb = "https\://www\.abuseipdb\.com/check/" + myArray[index];
 
                     //set abuseipdb iframe
-                    var aipdbIframeName = "aipdbIframe";
+                    var aipdbIframeName = "aipdbIframe" + index;
                     var aipdbWindow = document.createElement('iframe');
                     aipdbWindow.id = aipdbIframeName;
                     aipdbWindow.value = aipdbIframeName;
@@ -398,41 +337,33 @@ function DOMtoString(document_root) {
                     aipdbWindow.className = 'windows';
                     aipdbWindow.src = abuseipdb;
 
+                    //add AIPDB iframe to document to make it visible
                     document.body.appendChild(aipdbWindow);
                     document.getElementById(aipdbIframeName).name = aipdbIframeName;
 
-                    $('.windows').each(function(j) {
+                    //hide all windows before showing AIPDB window
+                    $('.windows').each(function() {
                         $(this).css('z-index', '0');
                         $(this).css('display', 'none');
                     });
-                    
-                    $('.toggletmDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-                   
-                    $('.toggletcDiv').each(function(j) {
+
+                    //turn off red text glow before setting it on RT div
+                    $('.toggleDiv').each(function() {
                         $(this).css('text-shadow', 'none');
                     });
 
-                    $('.togglertDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $(aipdbHandle).css('z-index', '120000004');
-                    $(aipdbHandle).css('display', 'unset');
+                    //show AIPDB window and set text to glowing red
                     $(aipdbWindow).css('z-index', '120000004');
                     $(aipdbWindow).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-                }) 
-            });
+                });
 
-            //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
-            $('.toggletcDiv').each(function(k) {
-                $(this).on("click", function(l) {
+                //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
+                $('#tcToggleDiv').on("click", function() {
                     var tc = "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index];
 
                     //set threatcrowd iframe
-                    var tcIframeName = "tcIframe";
+                    var tcIframeName = "tcIframe" + index;
                     var tcWindow = document.createElement('iframe');
                     tcWindow.id = tcIframeName;
                     tcWindow.value = tcIframeName;
@@ -440,41 +371,33 @@ function DOMtoString(document_root) {
                     tcWindow.className = 'windows';
                     tcWindow.src = tc;
 
+                    //add TC iframe to document to make it visible
                     document.body.appendChild(tcWindow);
                     document.getElementById(tcIframeName).name = tcIframeName;
 
-                    $('.windows').each(function(m) {
+                    //hide all windows before showing TC window
+                    $('.windows').each(function() {
                         $(this).css('z-index', '0');
                         $(this).css('display', 'none');
                     });    
 
-                    $('.toggletmDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-                   
-                    $('.toggleAIPDBDiv').each(function(j) {
+                    //turn off red text glow before setting it on TC div
+                    $('.toggleDiv').each(function() {
                         $(this).css('text-shadow', 'none');
                     });
 
-                    $('.togglertDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $(tcHandle).css('z-index', '120000005');
-                    $(tcHandle).css('display', 'unset');
+                    //show TC window and set text to glowing red
                     $(tcWindow).css('z-index', '120000005');
                     $(tcWindow).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-                })                
-            });
-
-        });
-    
+                });
+        };
     return newArray;
     });
 
-}
+});
 
+}
 chrome.runtime.sendMessage({
     action: "getSource",
     source: DOMtoString(document)
