@@ -1,4 +1,4 @@
-/** IPINT v1.1
+/** IPINT v1.0
     ORIGINAL DOMtoString CODE AUTHOR:
     @author Rob W <http://stackoverflow.com/users/938089/rob-w>
     Demo: var serialized_html = DOMtoString(document);
@@ -75,23 +75,30 @@ function DOMtoString(document_root) {
  
         $('.windows').each(function() {
             $(this).css('display', 'none');
+            $(this).remove();
         });
 
         $('.toggletmDiv').each(function() {
             $(this).css('display', 'none');
+            $(this).remove();
         });
 
         $('.toggletcDiv').each(function() {
             $(this).css('display', 'none');
+            $(this).remove();
         });
 
         $('.toggleAIPDBDiv').each(function() {
             $(this).css('display', 'none');
+            $(this).remove();
         });
 
         $('.togglertDiv').each(function() {
             $(this).css('display', 'none');
+            $(this).remove();
         });
+
+        $('#newArrayDiv').remove();
 
     });
 
@@ -183,7 +190,7 @@ function DOMtoString(document_root) {
 
                 //hide all iframes and divs before loading the new batch, to avoid a user clicking one ip and then another without first toggling/closing the initial IP
                 $('.windows').each(function() {
-                    $(this).css('display', 'none');
+                    $(this).remove();
                 });
 
                 $('.toggletmDiv').remove()
@@ -192,6 +199,24 @@ function DOMtoString(document_root) {
                 $('.toggletcDiv').remove()
 
                 var bgImage = chrome.extension.getURL("images/1.jpg");
+                var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
+
+                //set threatminer iframe
+                var tmIframeName = "tmIframe";
+                var tmWindow = document.createElement('iframe');
+                tmWindow.id = tmIframeName;
+                tmWindow.value = tmIframeName;
+                tmWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+                tmWindow.className = 'windows';
+                tmWindow.src = tm;
+
+                document.body.appendChild(tmWindow);
+                document.getElementById(tmIframeName).name = tmIframeName;
+
+                $(tmHandle).css('z-index', '120000000');
+                $(tmHandle).css('display', 'unset');
+                $(tmWindow).css('z-index', '120000000');
+                $(tmWindow).css('display', 'unset');
 
                 //set threatminer toggle div
                 var tmToggleDiv = document.createElement('div');
@@ -253,8 +278,8 @@ function DOMtoString(document_root) {
                 document.getElementById(tcToggleDivName).appendChild(tcToggleDivText);
 
                 $('.windows').each(function() {
-                    $(tmHandle).css('display', 'none');
-                    $(tmHandle).css('z-index', '0');
+                    $(tmHandle).css('display', 'unset');
+                    $(tmHandle).css('z-index', '120000111');
 
                     $(tmToggleHandle).css('display', 'unset');
                     $(tmToggleHandle).css('z-index', '120000001');
@@ -278,7 +303,6 @@ function DOMtoString(document_root) {
             $('.toggletmDiv').each(function(n) {
                 $(this).on("click", function(o) {
                     var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
-                    var bgImage = chrome.extension.getURL("images/1.jpg");
 
                     //set threatminer iframe
                     var tmIframeName = "tmIframe";
@@ -321,7 +345,6 @@ function DOMtoString(document_root) {
             $('.togglertDiv').each(function(q) {
                 $(this).on("click", function(r) {
                     var rt = "https\://www\.robtex\.com/?dns=" + myArray[index];
-                    var bgImage = chrome.extension.getURL("images/1.jpg");
 
                     //set robtex iframe
                     var rtIframeName = "rtIframe";
@@ -365,7 +388,6 @@ function DOMtoString(document_root) {
             $('.toggleAIPDBDiv').each(function(h) {
                 $(this).on("click", function(i) {
                     var abuseipdb = "https\://www\.abuseipdb\.com/check/" + myArray[index];
-                    var bgImage = chrome.extension.getURL("images/1.jpg");
 
                     //set abuseipdb iframe
                     var aipdbIframeName = "aipdbIframe";
@@ -408,7 +430,6 @@ function DOMtoString(document_root) {
             $('.toggletcDiv').each(function(k) {
                 $(this).on("click", function(l) {
                     var tc = "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index];
-                    var bgImage = chrome.extension.getURL("images/1.jpg");
 
                     //set threatcrowd iframe
                     var tcIframeName = "tcIframe";
@@ -447,10 +468,10 @@ function DOMtoString(document_root) {
                 })                
             });
 
-    });
+        });
     
     return newArray;
-});
+    });
 
 }
 
