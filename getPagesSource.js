@@ -1,4 +1,4 @@
-/** IPINT v1.0
+/** IPINT v1.1
     ORIGINAL DOMtoString CODE AUTHOR:
     @author Rob W <http://stackoverflow.com/users/938089/rob-w>
     Demo: var serialized_html = DOMtoString(document);
@@ -49,129 +49,6 @@ function DOMtoString(document_root) {
     var newArray = myArray.join("\n");
     
     /** Step 3
-    *   Add OSINT iframes and load pages 
-    *
-    *   Step 3a
-    *   Loop through matched IP addresses and allocate Iframes for later display
-    */
-    for (h = 0; h < myArray.length; h++) {
-        //set website targets using matched IP address information to set URLs
-        var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[h];
-        var tc = "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[h];
-        var abuseipdb = "https\://www\.abuseipdb\.com/check/" + myArray[h];
-        var vt = "https\://www\.virustotal\.com/en/ip-address/" + myArray[h]; + "/Information/";
-        var rt = "https\://www\.robtex\.com/?dns=" + myArray[h];
-        var bgImage = chrome.extension.getURL("images/1.jpg");
-
-        //set threatminer iframe
-        var tmIframeName = "tmIframe" + h;
-        var tmWindow = document.createElement('iframe');
-        tmWindow.id = tmIframeName;
-        tmWindow.value = tmIframeName;
-        tmWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-        tmWindow.className = 'windows';
-        tmWindow.src = tm;
-
-        //set threatminer toggle div
-        var tmToggleDiv = document.createElement('div');
-        var tmToggleDivName = "tmToggleDiv" + h;
-        var tmToggleDivText = document.createElement('p');
-        tmToggleDiv.id = tmToggleDivName;
-        tmToggleDiv.Name = tmToggleDivName;
-        tmToggleDiv.value = tmToggleDivName;
-        tmToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-        tmToggleDiv.className = 'toggletmDiv';
-        //set the text to append to this div
-        tmToggleDivText.innerText += "ThreatMiner";
-        //attach the DIV to the webpage
-        document.body.appendChild(tmToggleDiv);
-        document.getElementById(tmToggleDivName).appendChild(tmToggleDivText);
-
-        //set threatcrowd iframe
-        var tcIframeName = "tcIframe" + h;
-        var tcWindow = document.createElement('iframe');
-        tcWindow.id = tcIframeName;
-        tcWindow.value = tcIframeName;
-        tcWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-        tcWindow.className = 'windows';
-        tcWindow.src = tc;
-
-        //set threatcrowd toggle div
-        var tcToggleDiv = document.createElement('div');
-        var tcToggleDivName = "tcToggleDiv" + h;
-        var tcToggleDivText = document.createElement('p');
-        tcToggleDiv.id = tcToggleDivName;
-        tcToggleDiv.Name = tcToggleDivName;
-        tcToggleDiv.value = tcToggleDivName;
-        tcToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:500px;height\:39px;width\:100px;color\:white;background-color\:transparent;z-index\:120000111;border-bottom-right-radius\:6px;border-top-right-radius\:6px;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-        tcToggleDiv.className = 'toggletcDiv';
-        //set the text to append to this div
-        tcToggleDivText.innerText += "ThreatCrowd";
-        //attach the DIV to the webpage
-        document.body.appendChild(tcToggleDiv);
-        document.getElementById(tcToggleDivName).appendChild(tcToggleDivText);
-        
-        //set abuseipdb iframe
-        var aipdbIframeName = "aipdbIframe" + h;
-        var aipdbWindow = document.createElement('iframe');
-        aipdbWindow.id = aipdbIframeName;
-        aipdbWindow.value = aipdbIframeName;
-        aipdbWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-        aipdbWindow.className = 'windows';
-        aipdbWindow.src = abuseipdb;
-      
-        //set abuseipdb toggle div
-        var aipdbToggleDiv = document.createElement('div');
-        var aipdbToggleDivName = "aipdbToggleDiv" + h;
-        var aipdbToggleDivText = document.createElement('p');
-        aipdbToggleDiv.id = aipdbToggleDivName;
-        aipdbToggleDiv.Name = aipdbToggleDivName;
-        aipdbToggleDiv.value = aipdbToggleDivName;
-        var bgImage = chrome.extension.getURL("images/1.jpg");
-        aipdbToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:400px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-        aipdbToggleDiv.className = 'toggleAIPDBDiv';
-        //set the text to append to this div
-        aipdbToggleDivText.innerText += "AbuseIPDB";
-        //attach the DIV to the webpage
-        document.body.appendChild(aipdbToggleDiv);
-        document.getElementById(aipdbToggleDivName).appendChild(aipdbToggleDivText);
-
-        //set robtex iframe
-        var rtIframeName = "rtIframe" + h;
-        var rtWindow = document.createElement('iframe');
-        rtWindow.id = rtIframeName;
-        rtWindow.value = rtIframeName;
-        rtWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-        rtWindow.className = 'windows';
-        rtWindow.src = rt;
-
-        //set robtex toggle div
-        var rtToggleDiv = document.createElement('div');
-        var rtToggleDivName = "rtToggleDiv" + h;
-        var rtToggleDivText = document.createElement('p');
-        rtToggleDiv.id = rtToggleDivName;
-        rtToggleDiv.Name = rtToggleDivName;
-        rtToggleDiv.value = rtToggleDivName;
-        rtToggleDiv.style.cssText = 'display\:none;position\:fixed;top\:6px;left\:300px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-        rtToggleDiv.className = 'togglertDiv';
-        //set the text to append to this div
-        rtToggleDivText.innerText += "robtex";
-        //attach the DIV to the webpage
-        document.body.appendChild(rtToggleDiv);
-        document.getElementById(rtToggleDivName).appendChild(rtToggleDivText);
-               
-        //attach iframes to document
-        document.body.appendChild(aipdbWindow);
-        document.body.appendChild(tcWindow);
-        document.body.appendChild(tmWindow);
-        document.body.appendChild(rtWindow);
-        document.getElementById(rtIframeName).name = rtIframeName;
-        document.getElementById(aipdbIframeName).name = aipdbIframeName;
-        document.getElementById(tcIframeName).name = tcIframeName;
-        document.getElementById(tmIframeName).name = tmIframeName;
-    }
-
-    /** Step 4
     *   Make sidebar to control opening and closing OSINT frames
     */
     //make DOM elements to bind array to
@@ -237,7 +114,7 @@ function DOMtoString(document_root) {
         document.getElementById("newArrayDiv").appendChild(newArrayText);
     }
 
-    /** Step 6 
+    /** Step 4 
     *   Create and arm events to unhide OSINT iframes for analysis
     */
     $( ".toggleme" ).each(function(index) {
@@ -301,33 +178,83 @@ function DOMtoString(document_root) {
             }
             //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
             else {            
-                window.open(virusTotal, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=1425,width=483,height=860");
-                window.open(alienvault, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=933,width=483,height=860");
+                //window.open(virusTotal, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=1425,width=483,height=860");
+                //window.open(alienvault, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=933,width=483,height=860");
 
                 //hide all iframes and divs before loading the new batch, to avoid a user clicking one ip and then another without first toggling/closing the initial IP
                 $('.windows').each(function() {
                     $(this).css('display', 'none');
                 });
 
-                $('.toggletmDiv').each(function() {
-                    $(this).css('display', 'none');
-                });
+                $('.toggletmDiv').remove()
+                $('.togglertDiv').remove()
+                $('.toggleAIPDBDiv').remove()
+                $('.toggletcDiv').remove()
 
-                $('.toggletcDiv').each(function() {
-                    $(this).css('display', 'none');
-                });
+                var bgImage = chrome.extension.getURL("images/1.jpg");
 
-                $('.toggleAIPDBDiv').each(function() {
-                    $(this).css('display', 'none');
-                });
+                //set threatminer toggle div
+                var tmToggleDiv = document.createElement('div');
+                var tmToggleDivName = "tmToggleDiv";
+                var tmToggleDivText = document.createElement('p');
+                tmToggleDiv.id = tmToggleDivName;
+                tmToggleDiv.Name = tmToggleDivName;
+                tmToggleDiv.value = tmToggleDivName;
+                tmToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                tmToggleDiv.className = 'toggletmDiv';
+                //set the text to append to this div
+                tmToggleDivText.innerText += "ThreatMiner";
+                //attach the DIV to the webpage
+                document.body.appendChild(tmToggleDiv);
+                document.getElementById(tmToggleDivName).appendChild(tmToggleDivText);
 
-                $('.togglertDiv').each(function() {
-                    $(this).css('display', 'none');
-                });
+                //set robtex toggle div
+                var rtToggleDiv = document.createElement('div');
+                var rtToggleDivName = "rtToggleDiv";
+                var rtToggleDivText = document.createElement('p');
+                rtToggleDiv.id = rtToggleDivName;
+                rtToggleDiv.Name = rtToggleDivName;
+                rtToggleDiv.value = rtToggleDivName;
+                rtToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:300px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                rtToggleDiv.className = 'togglertDiv';
+                //set the text to append to this div
+                rtToggleDivText.innerText += "robtex";
+                //attach the DIV to the webpage
+                document.body.appendChild(rtToggleDiv);
+                document.getElementById(rtToggleDivName).appendChild(rtToggleDivText);
+
+                //set abuseipdb toggle div
+                var aipdbToggleDiv = document.createElement('div');
+                var aipdbToggleDivName = "aipdbToggleDiv";
+                var aipdbToggleDivText = document.createElement('p');
+                aipdbToggleDiv.id = aipdbToggleDivName;
+                aipdbToggleDiv.Name = aipdbToggleDivName;
+                aipdbToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:400px;height\:39px;width\:100px;color\:white;z-index\:120000115;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                aipdbToggleDiv.className = 'toggleAIPDBDiv';
+                //set the text to append to this div
+                aipdbToggleDivText.innerText += "AbuseIPDB";
+                //attach the DIV to the webpage
+                document.body.appendChild(aipdbToggleDiv);
+                document.getElementById(aipdbToggleDivName).appendChild(aipdbToggleDivText);
+
+                //set threatcrowd toggle div
+                var tcToggleDiv = document.createElement('div');
+                var tcToggleDivName = "tcToggleDiv";
+                var tcToggleDivText = document.createElement('p');
+                tcToggleDiv.id = tcToggleDivName;
+                tcToggleDiv.Name = tcToggleDivName;
+                tcToggleDiv.value = tcToggleDivName;
+                tcToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:500px;height\:39px;width\:100px;color\:white;z-index\:120000116;background-color\:transparent;border-bottom-right-radius\:6px;border-top-right-radius\:6px;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                tcToggleDiv.className = 'toggletcDiv';
+                //set the text to append to this div
+                tcToggleDivText.innerText += "ThreatCrowd";
+                //attach the DIV to the webpage
+                document.body.appendChild(tcToggleDiv);
+                document.getElementById(tcToggleDivName).appendChild(tcToggleDivText);
 
                 $('.windows').each(function() {
-                    $(tmHandle).css('display', 'unset');
-                    $(tmHandle).css('z-index', '120000000');
+                    $(tmHandle).css('display', 'none');
+                    $(tmHandle).css('z-index', '0');
 
                     $(tmToggleHandle).css('display', 'unset');
                     $(tmToggleHandle).css('z-index', '120000001');
@@ -350,6 +277,21 @@ function DOMtoString(document_root) {
             //if user clicks on the ThreatMiner div, hide all other iframes and display the TM OSINT
             $('.toggletmDiv').each(function(n) {
                 $(this).on("click", function(o) {
+                    var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
+                    var bgImage = chrome.extension.getURL("images/1.jpg");
+
+                    //set threatminer iframe
+                    var tmIframeName = "tmIframe";
+                    var tmWindow = document.createElement('iframe');
+                    tmWindow.id = tmIframeName;
+                    tmWindow.value = tmIframeName;
+                    tmWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+                    tmWindow.className = 'windows';
+                    tmWindow.src = tm;
+
+                    document.body.appendChild(tmWindow);
+                    document.getElementById(tmIframeName).name = tmIframeName;
+
                     $('.windows').each(function(p) {
                         $(this).css('z-index', '0');
                         $(this).css('display', 'none');
@@ -369,65 +311,30 @@ function DOMtoString(document_root) {
 
                     $(tmHandle).css('z-index', '120000000');
                     $(tmHandle).css('display', 'unset');
+                    $(tmWindow).css('z-index', '120000000');
+                    $(tmWindow).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 })
-            });
-
-            //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
-            $('.toggletcDiv').each(function(k) {
-                $(this).on("click", function(l) {
-                    $('.windows').each(function(m) {
-                        $(this).css('z-index', '0');
-                        $(this).css('display', 'none');
-                    });    
-
-                    $('.toggletmDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-                   
-                    $('.toggleAIPDBDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $('.togglertDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $(tcHandle).css('z-index', '120000000');
-                    $(tcHandle).css('display', 'unset');
-                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-                })                
-            });
-
-            //if user clicks on the AbuseIPDB div, hide all other iframes and display the AIPDB OSINT
-            $('.toggleAIPDBDiv').each(function(h) {
-                $(this).on("click", function(i) {
-                    $('.windows').each(function(j) {
-                        $(this).css('z-index', '0');
-                        $(this).css('display', 'none');
-                    });
-                    
-                    $('.toggletmDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-                   
-                    $('.toggletcDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $('.togglertDiv').each(function(j) {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    $(aipdbHandle).css('z-index', '120000000');
-                    $(aipdbHandle).css('display', 'unset');
-                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-                }) 
             });
 
             //if user clicks on the Robtex div, hide all other iframes and display the tobtex OSINT        
             $('.togglertDiv').each(function(q) {
                 $(this).on("click", function(r) {
+                    var rt = "https\://www\.robtex\.com/?dns=" + myArray[index];
+                    var bgImage = chrome.extension.getURL("images/1.jpg");
+
+                    //set robtex iframe
+                    var rtIframeName = "rtIframe";
+                    var rtWindow = document.createElement('iframe');
+                    rtWindow.id = rtIframeName;
+                    rtWindow.value = rtIframeName;
+                    rtWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+                    rtWindow.className = 'windows';
+                    rtWindow.src = rt;
+
+                    document.body.appendChild(rtWindow);
+                    document.getElementById(rtIframeName).name = rtIframeName;
+
                     $('.windows').each(function(s) {
                         $(this).css('z-index', '0');
                         $(this).css('display', 'none');
@@ -447,10 +354,99 @@ function DOMtoString(document_root) {
                     
                     $(rtHandle).css('z-index', '120000000');
                     $(rtHandle).css('display', 'unset');
+                    $(rtWindow).css('z-index', '120000000');
+                    $(rtWindow).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
 
                 });
             });
+
+            //if user clicks on the AbuseIPDB div, hide all other iframes and display the AIPDB OSINT
+            $('.toggleAIPDBDiv').each(function(h) {
+                $(this).on("click", function(i) {
+                    var abuseipdb = "https\://www\.abuseipdb\.com/check/" + myArray[index];
+                    var bgImage = chrome.extension.getURL("images/1.jpg");
+
+                    //set abuseipdb iframe
+                    var aipdbIframeName = "aipdbIframe";
+                    var aipdbWindow = document.createElement('iframe');
+                    aipdbWindow.id = aipdbIframeName;
+                    aipdbWindow.value = aipdbIframeName;
+                    aipdbWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+                    aipdbWindow.className = 'windows';
+                    aipdbWindow.src = abuseipdb;
+
+                    document.body.appendChild(aipdbWindow);
+                    document.getElementById(aipdbIframeName).name = aipdbIframeName;
+
+                    $('.windows').each(function(j) {
+                        $(this).css('z-index', '0');
+                        $(this).css('display', 'none');
+                    });
+                    
+                    $('.toggletmDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+                   
+                    $('.toggletcDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+                    $('.togglertDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+                    $(aipdbHandle).css('z-index', '120000004');
+                    $(aipdbHandle).css('display', 'unset');
+                    $(aipdbWindow).css('z-index', '120000004');
+                    $(aipdbWindow).css('display', 'unset');
+                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+                }) 
+            });
+
+            //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
+            $('.toggletcDiv').each(function(k) {
+                $(this).on("click", function(l) {
+                    var tc = "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index];
+                    var bgImage = chrome.extension.getURL("images/1.jpg");
+
+                    //set threatcrowd iframe
+                    var tcIframeName = "tcIframe";
+                    var tcWindow = document.createElement('iframe');
+                    tcWindow.id = tcIframeName;
+                    tcWindow.value = tcIframeName;
+                    tcWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+                    tcWindow.className = 'windows';
+                    tcWindow.src = tc;
+
+                    document.body.appendChild(tcWindow);
+                    document.getElementById(tcIframeName).name = tcIframeName;
+
+                    $('.windows').each(function(m) {
+                        $(this).css('z-index', '0');
+                        $(this).css('display', 'none');
+                    });    
+
+                    $('.toggletmDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+                   
+                    $('.toggleAIPDBDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+                    $('.togglertDiv').each(function(j) {
+                        $(this).css('text-shadow', 'none');
+                    });
+
+                    $(tcHandle).css('z-index', '120000005');
+                    $(tcHandle).css('display', 'unset');
+                    $(tcWindow).css('z-index', '120000005');
+                    $(tcWindow).css('display', 'unset');
+                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+                })                
+            });
+
     });
     
     return newArray;
