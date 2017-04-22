@@ -57,22 +57,33 @@ function DOMtoString(document_root) {
     *   Make sidebar to control opening and closing OSINT frames
     */
     //make DOM elements to bind array to
+    //add attributes for sidebar and its background config
     var newArrayDiv = document.createElement("div");
     var bgImage = chrome.extension.getURL("images/1.jpg");
     newArrayDiv.id = "newArrayDiv";
-    newArrayDiv.style.cssText = 'z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:755px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;background-color\:transparent;border-radius\:6px;border\:3px solid gray;background-image\:url(' + bgImage + ');box-shadow\:1px 1px 0\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+    newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:97%;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;background-color\:transparent;border-radius\:6px;border\:3px solid gray;background-image\:url(' + bgImage + ');box-shadow\:1px 1px 0\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
     document.body.appendChild(newArrayDiv);
 
-    //add attributes to window for closing and background config
+    //add attributes to window for closing and closing image
     var closeButton = document.createElement("div");
-    var buttonImage = chrome.extension.getURL("images/r1.png");
+    var buttonImage = chrome.extension.getURL("images/r2.png");
     closeButton.id = "closeButton";
     closeButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:10px;left\:10px;max-height\:25%;max-width\:25%;background-image\:url(' + buttonImage + ')';
     var buttonImg = document.createElement("img");
     buttonImg.style.cssText = 'z-index\:120000002;position\:fixed;top\:15px;left\:15px;max-height\:2%;max-width\:2%';
     buttonImg.id = "buttonImage";
     buttonImg.src = buttonImage;
-    
+
+    //add attributes to window transparency
+    var transButton = document.createElement("div");
+    var transImage = chrome.extension.getURL("images/b1.png");
+    transButton.id = "transButton";
+    transButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:10px;left\:150px;max-height\:25%;max-width\:25%;background-image\:url(' + transImage + ')';
+    var transImg = document.createElement("img");
+    transImg.style.cssText = 'z-index\:120000002;position\:fixed;top\:15px;left\:35px;max-height\:2%;max-width\:2%';
+    transImg.id = "transImage";
+    transImg.src = transImage;
+
     //Set function to close out sidebar and all divs
     $(buttonImg).click(function() {
         $('.windows').each(function() {
@@ -86,14 +97,44 @@ function DOMtoString(document_root) {
         $('#newArrayDiv').remove();
     });
 
-    //attach close button to DOM
+
+    //Set function to close out sidebar and all divs
+    $(transImg).click(function() {
+        if ( $(newArrayDiv).css('opacity') === ('0.33') ) {
+            $('.windows').each(function() {
+                $(this).css({ opacity: 1.0 });
+            });
+
+            $('.toggleDiv').each(function() {
+                $(this).css({ opacity: 1.0 });
+            });
+
+            $('#newArrayDiv').css({ opacity: 1.0 });
+        }
+
+        else {
+            $('.windows').each(function() {
+                $(this).css({ opacity: 0.33 });
+            });
+
+            $('.toggleDiv').each(function() {
+                $(this).css({ opacity: 0.33 });
+            });
+
+            $('#newArrayDiv').css({ opacity: 0.33 });
+        }
+    });
+
+
+    //attach close button and transparency to DOM
     document.getElementById("newArrayDiv").appendChild(closeButton);
     document.getElementById("closeButton").appendChild(buttonImg);
-    
+    document.getElementById("newArrayDiv").appendChild(transButton);
+    document.getElementById("transButton").appendChild(transImg);
+
     //use IP array to generate text of IP addresses and add it to sidebar div
     for (i = 0;i < myArray.length; i++) {
         var aipdbIframeName = "aipdbIframe" + i;
-
         var newArrayText = document.createElement("p");
         var newArrayTextName = "newArrayText" + i;
         newArrayText.id = newArrayTextName;
@@ -154,10 +195,7 @@ function DOMtoString(document_root) {
                 });
             }
             //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
-            else {            
-                window.open(virusTotal, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=1425,width=483,height=860");
-                window.open(alienvault, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=75,left=933,width=483,height=860");
-
+            else {
                 //hide all iframes and divs before loading the new batch, to avoid a user clicking one ip and then another without first toggling/closing the initial IP
                 $('.windows').each(function() {
                     $(this).remove();
@@ -207,27 +245,13 @@ function DOMtoString(document_root) {
                 rtToggleDiv.id = rtToggleDivName;
                 rtToggleDiv.Name = rtToggleDivName;
                 rtToggleDiv.value = rtToggleDivName;
-                rtToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:300px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                rtToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:300px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
                 rtToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 rtToggleDivText.innerText += "robtex";
                 //attach the DIV to the webpage
                 document.body.appendChild(rtToggleDiv);
                 document.getElementById(rtToggleDivName).appendChild(rtToggleDivText);
-
-                //set abuseipdb toggle div
-                var aipdbToggleDiv = document.createElement('div');
-                var aipdbToggleDivName = "aipdbToggleDiv";
-                var aipdbToggleDivText = document.createElement('p');
-                aipdbToggleDiv.id = aipdbToggleDivName;
-                aipdbToggleDiv.Name = aipdbToggleDivName;
-                aipdbToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:400px;height\:39px;width\:100px;color\:white;z-index\:120000115;background-color\:transparent;border-radius\:6;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-right-radius\:6px;border-bottom-right-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                aipdbToggleDiv.className = 'toggleDiv';
-                //set the text to append to this div
-                aipdbToggleDivText.innerText += "AbuseIPDB";
-                //attach the DIV to the webpage
-                document.body.appendChild(aipdbToggleDiv);
-                document.getElementById(aipdbToggleDivName).appendChild(aipdbToggleDivText);
 
                 //set threatcrowd toggle div
                 var tcToggleDiv = document.createElement('div');
@@ -236,7 +260,7 @@ function DOMtoString(document_root) {
                 tcToggleDiv.id = tcToggleDivName;
                 tcToggleDiv.Name = tcToggleDivName;
                 tcToggleDiv.value = tcToggleDivName;
-                tcToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:500px;height\:39px;width\:100px;color\:white;z-index\:120000116;background-color\:transparent;border-bottom-right-radius\:6px;border-top-right-radius\:6px;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                tcToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:400px;height\:39px;width\:100px;color\:white;z-index\:120000116;background-color\:transparent;border-bottom-right-radius\:6px;border-top-right-radius\:6px;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
                 tcToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 tcToggleDivText.innerText += "ThreatCrowd";
@@ -324,40 +348,6 @@ function DOMtoString(document_root) {
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 });
 
-                //if user clicks on the AbuseIPDB div, hide all other iframes and display the AIPDB OSINT
-                $('#aipdbToggleDiv').on("click", function() {
-                    var abuseipdb = "https\://www\.abuseipdb\.com/check/" + myArray[index];
-
-                    //set abuseipdb iframe
-                    var aipdbIframeName = "aipdbIframe" + index;
-                    var aipdbWindow = document.createElement('iframe');
-                    aipdbWindow.id = aipdbIframeName;
-                    aipdbWindow.value = aipdbIframeName;
-                    aipdbWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-                    aipdbWindow.className = 'windows';
-                    aipdbWindow.src = abuseipdb;
-
-                    //add AIPDB iframe to document to make it visible
-                    document.body.appendChild(aipdbWindow);
-                    document.getElementById(aipdbIframeName).name = aipdbIframeName;
-
-                    //hide all windows before showing AIPDB window
-                    $('.windows').each(function() {
-                        $(this).css('z-index', '0');
-                        $(this).css('display', 'none');
-                    });
-
-                    //turn off red text glow before setting it on RT div
-                    $('.toggleDiv').each(function() {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    //show AIPDB window and set text to glowing red
-                    $(aipdbWindow).css('z-index', '120000004');
-                    $(aipdbWindow).css('display', 'unset');
-                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-                });
-
                 //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
                 $('#tcToggleDiv').on("click", function() {
                     var tc = "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index];
@@ -398,6 +388,7 @@ function DOMtoString(document_root) {
 });
 
 }
+
 chrome.runtime.sendMessage({
     action: "getSource",
     source: DOMtoString(document)
