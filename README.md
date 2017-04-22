@@ -16,7 +16,7 @@ Initial version includes:
 <ul>
 <li>ThreatMiner</li>
 <li>ThreatCrowd</li>
-<li>Abuse IP DB</li>
+<li>Robtex</li>
 </ul>
 
 Future releases may incorporate:
