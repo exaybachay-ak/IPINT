@@ -86,42 +86,22 @@ function DOMtoString(document_root) {
 
     //Set function to close out sidebar and all divs
     $(buttonImg).click(function() {
-        $('.windows').each(function() {
+        $('.windows, .toggleDiv, #newArrayDiv').each(function() {
             $(this).remove();
         });
-
-        $('.toggleDiv').each(function() {
-            $(this).remove();
-        });
-
-        $('#newArrayDiv').remove();
     });
 
 
     //Set function to close out sidebar and all divs
     $(transImg).click(function() {
         if ( $(newArrayDiv).css('opacity') === ('0.33') ) {
-            $('.windows').each(function() {
+            $('.windows, .toggleDiv, #newArrayDiv').each(function() {
                 $(this).css({ opacity: 1.0 });
             });
-
-            $('.toggleDiv').each(function() {
-                $(this).css({ opacity: 1.0 });
-            });
-
-            $('#newArrayDiv').css({ opacity: 1.0 });
-        }
-
-        else {
-            $('.windows').each(function() {
+        } else {
+            $('.windows, .toggleDiv, #newArrayDiv').each(function() {
                 $(this).css({ opacity: 0.33 });
             });
-
-            $('.toggleDiv').each(function() {
-                $(this).css({ opacity: 0.33 });
-            });
-
-            $('#newArrayDiv').css({ opacity: 0.33 });
         }
     });
 
@@ -184,7 +164,6 @@ function DOMtoString(document_root) {
             
             //if topbar is loaded already, tear it down and close things out
             if ( $(tmToggleHandle).css('display') === ('unset') ){
-                
                 $('.windows').each(function() {
                     $(this).css('display', 'none');
                 });
@@ -193,15 +172,11 @@ function DOMtoString(document_root) {
                     $(this).css('display', 'none');
                     $(this).css('z-index', '0')
                 });
-            }
-            //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
-            else {
+            } else { //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
                 //hide all iframes and divs before loading the new batch, to avoid a user clicking one ip and then another without first toggling/closing the initial IP
-                $('.windows').each(function() {
+                $('.windows, .toggleDiv').each(function() {
                     $(this).remove();
                 });
-
-                $('.toggleDiv').remove()
 
                 var bgImage = chrome.extension.getURL("images/1.jpg");
                 var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
@@ -218,8 +193,6 @@ function DOMtoString(document_root) {
                 document.body.appendChild(tmWindow);
                 document.getElementById(tmIframeName).name = tmIframeName;
 
-                //$(tmHandle).css('z-index', '120000000');
-                //$(tmHandle).css('display', 'unset');
                 $(tmWindow).css('z-index', '120000000');
                 $(tmWindow).css('display', 'unset');
 
@@ -381,13 +354,11 @@ function DOMtoString(document_root) {
                     $(tcWindow).css('display', 'unset');
                     $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
                 });
-        };
-    return newArray;
-    });
-
-});
-
-}
+			};
+			return newArray;
+		});
+	}); // $( ".toggleme" ).each(
+} // function DOMtoString
 
 chrome.runtime.sendMessage({
     action: "getSource",
