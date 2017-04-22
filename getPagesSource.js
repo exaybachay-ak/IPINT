@@ -5,6 +5,35 @@
     New IPINT Overlay AUTHOR
     @author Jacob Kelley / exaybachay 
 
+*** General use functions
+*/
+function displayOsintIframe( context, url ){
+	// Remove existing IPINT window(s) before showing current
+	$('.windows').each(function() {
+		$(this).remove();
+	});
+
+	//Create iframe
+	var ipintIframe = document.createElement('iframe');
+	ipintIframe.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+	ipintIframe.className = 'windows';
+	ipintIframe.src = url;
+
+	//add TC iframe to document to make it visible
+	document.body.appendChild(ipintIframe);
+
+	//turn off red text glow before setting it on current div
+	$('.toggleDiv').each(function() {
+		$(this).css('text-shadow', 'none');
+	});
+	$(context).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+
+	//show iFrame
+	$(ipintIframe).css('z-index', '120000005');
+	$(ipintIframe).css('display', 'unset');
+}
+
+/*
 *** Step 1
 **********
 *   Read the current window into memory to review and use for updating window
@@ -282,104 +311,17 @@ function DOMtoString(document_root) {
 
                 //if user clicks on the ThreatMiner div, hide all other iframes and display the TM OSINT
                 $('#tmToggleDiv').on("click", function() {
-                    var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
-
-                    //set threatminer iframe
-                    var tmIframeName = "tmIframe" + index;
-                    var tmWindow = document.createElement('iframe');
-                    tmWindow.id = tmIframeName;
-                    tmWindow.value = tmIframeName;
-                    tmWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-                    tmWindow.className = 'windows';
-                    tmWindow.src = tm;
-
-                    //add TM iframe to document to make it visible
-                    document.body.appendChild(tmWindow);
-                    document.getElementById(tmIframeName).name = tmIframeName;
-
-                    //hide all windows before showing TM window
-                    $('.windows').each(function() {
-                        $(this).css('z-index', '0');
-                        $(this).css('display', 'none');
-                    });
-
-                    //turn off red text glow before setting it on TM div                    
-                    $('.toggleDiv').each(function() {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    //show TM window and set text to glowing red
-                    $(tmWindow).css('z-index', '120000000');
-                    $(tmWindow).css('display', 'unset');
-                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+					displayOsintIframe( this, "https\://www\.threatminer\.org/host\.php?q=" + myArray[index] );
                 });
 
                 //if user clicks on the Robtex div, hide all other iframes and display the robtex OSINT        
                 $('#rtToggleDiv').on("click", function() {
-                    var rt = "https\://www\.robtex\.com/?dns=" + myArray[index];
-
-                    //set robtex iframe
-                    var rtIframeName = "rtIframe" + index;
-                    var rtWindow = document.createElement('iframe');
-                    rtWindow.id = rtIframeName;
-                    rtWindow.value = rtIframeName;
-                    rtWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-                    rtWindow.className = 'windows';
-                    rtWindow.src = rt;
-
-                    //add TM iframe to document to make it visible
-                    document.body.appendChild(rtWindow);
-                    document.getElementById(rtIframeName).name = rtIframeName;
-
-                    //hide all windows before showing RT window
-                    $('.windows').each(function() {
-                        $(this).css('z-index', '0');
-                        $(this).css('display', 'none');
-                    });
-
-                    //turn off red text glow before setting it on RT div                                        
-                    $('.toggleDiv').each(function() {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    //show RT window and set text to glowing red
-                    $(rtWindow).css('z-index', '120000000');
-                    $(rtWindow).css('display', 'unset');
-                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+					displayOsintIframe( this, "https\://www\.robtex\.com/?dns=" + myArray[index] );
                 });
 
                 //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
                 $('#tcToggleDiv').on("click", function() {
-                    var tc = "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index];
-
-                    //set threatcrowd iframe
-                    var tcIframeName = "tcIframe" + index;
-                    var tcWindow = document.createElement('iframe');
-                    tcWindow.id = tcIframeName;
-                    tcWindow.value = tcIframeName;
-                    tcWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-                    tcWindow.className = 'windows';
-                    tcWindow.src = tc;
-
-                    //add TC iframe to document to make it visible
-                    document.body.appendChild(tcWindow);
-                    document.getElementById(tcIframeName).name = tcIframeName;
-
-                    //hide all windows before showing TC window
-                    $('.windows').each(function() {
-                        $(this).css('z-index', '0');
-                        $(this).css('display', 'none');
-                    });    
-
-                    //turn off red text glow before setting it on TC div
-                    $('.toggleDiv').each(function() {
-                        $(this).css('text-shadow', 'none');
-                    });
-
-                    //show TC window and set text to glowing red
-                    $(tcWindow).css('z-index', '120000005');
-                    $(tcWindow).css('display', 'unset');
-                    $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+					displayOsintIframe( this, "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index] );
                 });
         };
     return newArray;
