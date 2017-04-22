@@ -11,6 +11,8 @@ TO INSTALL:
 <li>click on "Load unpacked extension..."</li>
 <li>browse to the unpacked repo directory and select "Open"</li>
 
+
+
 Initial version includes:
 
 <ul>
