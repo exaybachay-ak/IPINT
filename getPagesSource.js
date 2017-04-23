@@ -33,11 +33,6 @@ function displayOsintIframe( context, url ){
     $(ipintIframe).css('display', 'unset');
 }
 
-/*
-*** Step 1
-**********
-*   Read the current window into memory to review and use for updating window
-*/
 function getVisibleText(s) {
 	var SCRIPT_REGEX = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
 	while (SCRIPT_REGEX.test(s)) {
@@ -49,6 +44,12 @@ function getVisibleText(s) {
 	}
 	return s;
 }
+
+/*
+*** Step 1
+**********
+*   Read the current window into memory to review and use for updating window
+*/
 
 function DOMtoString(document_root) {
     var html = '',
