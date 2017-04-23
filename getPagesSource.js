@@ -8,29 +8,29 @@
 *** General use functions
 */
 function displayOsintIframe( context, url ){
-	// Remove existing IPINT window(s) before showing current
-	$('.windows').each(function() {
-		$(this).remove();
-	});
+    // Remove existing IPINT window(s) before showing current
+    $('.windows').each(function() {
+        $(this).remove();
+    });
 
-	//Create iframe
-	var ipintIframe = document.createElement('iframe');
-	ipintIframe.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-	ipintIframe.className = 'windows';
-	ipintIframe.src = url;
+    //Create iframe
+    var ipintIframe = document.createElement('iframe');
+    ipintIframe.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+    ipintIframe.className = 'windows';
+    ipintIframe.src = url;
 
-	//add TC iframe to document to make it visible
-	document.body.appendChild(ipintIframe);
+    //add TC iframe to document to make it visible
+    document.body.appendChild(ipintIframe);
 
-	//turn off red text glow before setting it on current div
-	$('.toggleDiv').each(function() {
-		$(this).css('text-shadow', 'none');
-	});
-	$(context).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
+    //turn off red text glow before setting it on current div
+    $('.toggleDiv').each(function() {
+        $(this).css('text-shadow', 'none');
+    });
+    $(context).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
 
-	//show iFrame
-	$(ipintIframe).css('z-index', '120000005');
-	$(ipintIframe).css('display', 'unset');
+    //show iFrame
+    $(ipintIframe).css('z-index', '120000005');
+    $(ipintIframe).css('display', 'unset');
 }
 
 /*
@@ -39,14 +39,14 @@ function displayOsintIframe( context, url ){
 *   Read the current window into memory to review and use for updating window
 */
 function getVisibleText(s) {
-	var div = document.createElement('div');
-	div.innerHTML = s;
-	var scripts = div.getElementsByTagName('script');
-	var i = scripts.length;
-	while (i--) {
-		scripts[i].parentNode.removeChild(scripts[i]);
-	}
-	return div.textContent || div.innerTEXT;
+    var div = document.createElement('div');
+    div.innerHTML = s;
+    var scripts = div.getElementsByTagName('script');
+    var i = scripts.length;
+    while (i--) {
+        scripts[i].parentNode.removeChild(scripts[i]);
+    }
+    return div.textContent || div.innerTEXT;
 }
 
 function DOMtoString(document_root) {
@@ -295,25 +295,28 @@ function DOMtoString(document_root) {
 
                 //if user clicks on the ThreatMiner div, hide all other iframes and display the TM OSINT
                 $('#tmToggleDiv').on("click", function() {
-					displayOsintIframe( this, "https\://www\.threatminer\.org/host\.php?q=" + myArray[index] );
+                    displayOsintIframe( this, "https\://www\.threatminer\.org/host\.php?q=" + myArray[index] );
                 });
 
                 //if user clicks on the Robtex div, hide all other iframes and display the robtex OSINT        
                 $('#rtToggleDiv').on("click", function() {
-					displayOsintIframe( this, "https\://www\.robtex\.com/?dns=" + myArray[index] );
+                    displayOsintIframe( this, "https\://www\.robtex\.com/?dns=" + myArray[index] );
                 });
 
                 //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
                 $('#tcToggleDiv').on("click", function() {
-					displayOsintIframe( this, "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index] );
+                    displayOsintIframe( this, "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index] );
                 });
-			};
-			return newArray;
-		});
-	}); // $( ".toggleme" ).each(
+            };
+            return newArray;
+        });
+    }); // $( ".toggleme" ).each(
 } // function DOMtoString
 
-chrome.runtime.sendMessage({
-    action: "getSource",
-    source: DOMtoString(document)
-});
+var sidebarExists = document.getElementById("newArrayDiv");
+if ( !sidebarExists ){
+    chrome.runtime.sendMessage({
+        action: "getSource",
+        source: DOMtoString(document)
+    });
+}
