@@ -33,11 +33,6 @@ function displayOsintIframe( context, url ){
     $(ipintIframe).css('display', 'unset');
 }
 
-/*
-*** Step 1
-**********
-*   Read the current window into memory to review and use for updating window
-*/
 function getVisibleText(s) {
     var div = document.createElement('div');
     div.innerHTML = s;
@@ -48,6 +43,12 @@ function getVisibleText(s) {
     }
     return div.textContent || div.innerTEXT;
 }
+
+/*
+*** Step 1
+**********
+*   Read the current window into memory to review and use for updating window
+*/
 
 function DOMtoString(document_root) {
     var html = '',
