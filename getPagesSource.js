@@ -9,16 +9,27 @@
 **********
 *   Read the current window into memory to review and use for updating window
 */
+function getVisibleText(s) {
+	var div = document.createElement('div');
+	div.innerHTML = s;
+	var scripts = div.getElementsByTagName('script');
+	var i = scripts.length;
+	while (i--) {
+		scripts[i].parentNode.removeChild(scripts[i]);
+	}
+	return div.textContent || div.innerTEXT;
+}
+
 function DOMtoString(document_root) {
     var html = '',
         node = document_root.firstChild;
     while (node) {
         switch (node.nodeType) {
         case Node.ELEMENT_NODE:
-            html += node.outerHTML;
+            html += getVisibleText( node.outerHTML );
             break;
         case Node.TEXT_NODE:
-            html += node.nodeValue;
+            html += getVisibleText( node.nodeValue );
             break;
         case Node.CDATA_SECTION_NODE:
             html += '<![CDATA[' + node.nodeValue + ']]>';
