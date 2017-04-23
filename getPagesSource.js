@@ -39,14 +39,15 @@ function displayOsintIframe( context, url ){
 *   Read the current window into memory to review and use for updating window
 */
 function getVisibleText(s) {
-    var div = document.createElement('div');
-    div.innerHTML = s;
-    var scripts = div.getElementsByTagName('script');
-    var i = scripts.length;
-    while (i--) {
-        scripts[i].parentNode.removeChild(scripts[i]);
-    }
-    return div.textContent || div.innerTEXT;
+	var SCRIPT_REGEX = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+	while (SCRIPT_REGEX.test(s)) {
+		s = s.replace(SCRIPT_REGEX, "");
+	}
+	var STYLE_REGEX = /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi;
+	while (STYLE_REGEX.test(s)) {
+		s = s.replace(STYLE_REGEX, "");
+	}
+	return s;
 }
 
 function DOMtoString(document_root) {
