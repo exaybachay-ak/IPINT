@@ -131,17 +131,18 @@ function DOMtoString(document_root) {
         $('.windows, .toggleDiv, #newArrayDiv').each(function() {
             $(this).remove();
         });
+        clipboard.remove();
     });
 
 
-    //Set function to close out sidebar and all divs
+    //Set function to make divs transparent
     $(transImg).click(function() {
         if ( $(newArrayDiv).css('opacity') === ('0.33') ) {
-            $('.windows, .toggleDiv, #newArrayDiv').each(function() {
+            $('.windows, .toggleDiv, #newArrayDiv, #clipboard').each(function() {
                 $(this).css({ opacity: 1.0 });
             });
         } else {
-            $('.windows, .toggleDiv, #newArrayDiv').each(function() {
+            $('.windows, .toggleDiv, #newArrayDiv, #clipboard').each(function() {
                 $(this).css({ opacity: 0.33 });
             });
         }
@@ -200,9 +201,13 @@ function DOMtoString(document_root) {
             var aipdbToggleHandle = document.getElementById(aipdbToggleNameToggle);
             var rtHandle = document.getElementById(rtIframeNameToggle);
             var rtToggleHandle = document.getElementById(rtToggleNameToggle);
-            //initialize virustotal and alienvault URLs for window loading
-            var virusTotal = "https\://www\.virustotal\.com/en/ip-address/" + myArray[index] + "/information/";
-            var alienvault = "https\://otx\.alienvault\.com/browse/pulses/?q=" + myArray[index] + "";
+            //create text area to display current URL for copying
+            var clipboard = document.createElement("div");
+            clipboard.id = "clipboard";
+            clipboard.className = "clipboard";
+            clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:9px;left\:520px;height\:35px;padding-top\:4px;padding-left\:10px;padding-right\:18px;color\:white;background-color\:transparent;background:black;border-radius\:6px;border\:3px solid gray;box-shadow\:1px 1px 0\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+            document.body.appendChild(clipboard);
+
             
             //if topbar is loaded already, tear it down and close things out
             if ( $(tmToggleHandle).css('display') === ('unset') ){
@@ -222,6 +227,9 @@ function DOMtoString(document_root) {
 
                 var bgImage = chrome.extension.getURL("images/1.jpg");
                 var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
+                //set the clipboard text for copying
+                clipboard.innerText = ""
+                clipboard.innerText = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
 
                 //set threatminer iframe
                 var tmIframeName = "tmIframe";
@@ -298,22 +306,35 @@ function DOMtoString(document_root) {
                 //if user clicks on the ThreatMiner div, hide all other iframes and display the TM OSINT
                 $('#tmToggleDiv').on("click", function() {
                     displayOsintIframe( this, "https\://www\.threatminer\.org/host\.php?q=" + myArray[index] );
+                    //clear current clipboard contents before adding new info
+                    clipboard.innerText = "";
+                    //add URL to clipboard div for copying
+                    clipboard.innerText += "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
                 });
 
                 //if user clicks on the Robtex div, hide all other iframes and display the robtex OSINT        
                 $('#rtToggleDiv').on("click", function() {
                     displayOsintIframe( this, "https\://www\.robtex\.com/?dns=" + myArray[index] );
+                    //clear current clipboard contents before adding new info
+                    clipboard.innerText = "";
+                    //add URL to clipboard div for copying
+                    clipboard.innerText += "https\://www\.robtex\.com/?dns=" + myArray[index];
                 });
 
                 //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
                 $('#tcToggleDiv').on("click", function() {
                     displayOsintIframe( this, "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index] );
+                    //clear current clipboard contents before adding new info
+                    clipboard.innerText = "";
+                    //add URL to clipboard div for copying
+                    clipboard.innerText += "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index];
                 });
             };
             return newArray;
         });
-    }); // $( ".toggleme" ).each(
-} // function DOMtoString
+    });
+
+}
 
 var sidebarExists = document.getElementById("newArrayDiv");
 if ( !sidebarExists ){
