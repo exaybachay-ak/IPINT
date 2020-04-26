@@ -1,9 +1,10 @@
 /** IPINT v1.0
+    New IPINT Overlay AUTHOR
+    @author Jacob Kelley / exaybachay 
+
     ORIGINAL DOMtoString CODE AUTHOR:
     @author Rob W <http://stackoverflow.com/users/938089/rob-w>
     Demo: var serialized_html = DOMtoString(document);
-    New IPINT Overlay AUTHOR
-    @author Jacob Kelley / exaybachay 
 
 *** General use functions
 */
@@ -15,7 +16,7 @@ function displayOsintIframe( context, url ){
 
     //Create iframe
     var ipintIframe = document.createElement('iframe');
-    ipintIframe.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+    ipintIframe.style.cssText = 'display\:none;position\:fixed;top\:65px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;box-shadow\:5px 5px 2\.5px #555555;border-radius\:6px;border\:2px solid gray;';
     ipintIframe.className = 'windows';
     ipintIframe.src = url;
 
@@ -205,7 +206,7 @@ function DOMtoString(document_root) {
             var clipboard = document.createElement("div");
             clipboard.id = "clipboard";
             clipboard.className = "clipboard";
-            clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:9px;left\:520px;height\:35px;padding-top\:4px;padding-left\:10px;padding-right\:18px;color\:white;background-color\:transparent;background:black;border-radius\:6px;border\:3px solid gray;box-shadow\:1px 1px 0\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+            clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:535px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:transparent;background:black;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
             document.body.appendChild(clipboard);
 
             
@@ -236,7 +237,7 @@ function DOMtoString(document_root) {
                 var tmWindow = document.createElement('iframe');
                 tmWindow.id = tmIframeName;
                 tmWindow.value = tmIframeName;
-                tmWindow.style.cssText = 'display\:none;position\:fixed;top\:55px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
+                tmWindow.style.cssText = 'display\:none;position\:fixed;top\:65px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
                 tmWindow.className = 'windows';
                 tmWindow.src = tm;
                 //attach the iframe to the webpage
