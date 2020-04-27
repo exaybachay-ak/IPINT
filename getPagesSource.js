@@ -102,7 +102,6 @@ function DOMtoString(document_root) {
     //make DOM elements to bind array to
     //add attributes for sidebar and its background config
     var newArrayDiv = document.createElement("div");
-    var bgImage = chrome.extension.getURL("images/1.jpg");
     newArrayDiv.id = "newArrayDiv";
     newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:759px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
     document.body.appendChild(newArrayDiv);
@@ -226,7 +225,6 @@ function DOMtoString(document_root) {
                     $(this).remove();
                 });
 
-                var bgImage = chrome.extension.getURL("images/1.jpg");
                 var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
                 //set the clipboard text for copying
                 clipboard.innerText = ""
