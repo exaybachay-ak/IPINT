@@ -5,9 +5,9 @@
     ORIGINAL DOMtoString CODE AUTHOR:
     @author Rob W <http://stackoverflow.com/users/938089/rob-w>
     Demo: var serialized_html = DOMtoString(document);
-
-*** General use functions
 */
+
+///*** General use functions
 function displayOsintIframe( context, url ){
     // Remove existing IPINT window(s) before showing current
     $('.windows').each(function() {
@@ -104,7 +104,7 @@ function DOMtoString(document_root) {
     var newArrayDiv = document.createElement("div");
     var bgImage = chrome.extension.getURL("images/1.jpg");
     newArrayDiv.id = "newArrayDiv";
-    newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:97%;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;background-color\:transparent;border-radius\:6px;border\:3px solid gray;background-image\:url(' + bgImage + ');box-shadow\:1px 1px 0\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+    newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:759px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
     document.body.appendChild(newArrayDiv);
 
     //add attributes to window for closing and closing image
@@ -206,7 +206,7 @@ function DOMtoString(document_root) {
             var clipboard = document.createElement("div");
             clipboard.id = "clipboard";
             clipboard.className = "clipboard";
-            clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:535px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:transparent;background:black;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
+            clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:585px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
             document.body.appendChild(clipboard);
 
             
@@ -247,6 +247,7 @@ function DOMtoString(document_root) {
                 $(tmWindow).css('z-index', '120000000');
                 $(tmWindow).css('display', 'unset');
 
+
                 //set threatminer toggle div
                 var tmToggleDiv = document.createElement('div');
                 var tmToggleDivName = "tmToggleDiv";
@@ -254,7 +255,7 @@ function DOMtoString(document_root) {
                 tmToggleDiv.id = tmToggleDivName;
                 tmToggleDiv.Name = tmToggleDivName;
                 tmToggleDiv.value = tmToggleDivName;
-                tmToggleDiv.style.cssText = 'text-shadow\: 0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00;cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                tmToggleDiv.style.cssText = 'text-shadow\: 0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00;cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:#0C4E6E;margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
                 tmToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 tmToggleDivText.innerText += "ThreatMiner";
@@ -269,7 +270,7 @@ function DOMtoString(document_root) {
                 rtToggleDiv.id = rtToggleDivName;
                 rtToggleDiv.Name = rtToggleDivName;
                 rtToggleDiv.value = rtToggleDivName;
-                rtToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:300px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:transparent;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                rtToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:325px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:#0C4E6E;margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
                 rtToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 rtToggleDivText.innerText += "robtex";
@@ -284,7 +285,7 @@ function DOMtoString(document_root) {
                 tcToggleDiv.id = tcToggleDivName;
                 tcToggleDiv.Name = tcToggleDivName;
                 tcToggleDiv.value = tcToggleDivName;
-                tcToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:400px;height\:39px;width\:100px;color\:white;z-index\:120000116;background-color\:transparent;border-bottom-right-radius\:6px;border-top-right-radius\:6px;background-image\:url(' + bgImage + ');margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+                tcToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:450px;height\:39px;width\:100px;color\:white;z-index\:120000116;background-color\:#0C4E6E;border-bottom-right-radius\:6px;border-top-right-radius\:6px;margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
                 tcToggleDiv.className = 'toggleDiv';
                 //set the text to append to this div
                 tcToggleDivText.innerText += "ThreatCrowd";
