@@ -1,13 +1,13 @@
 /** IPINT v1.0
     New IPINT Overlay AUTHOR
-    @author Jacob Kelley / exaybachay 
+    @author Jacob Kelley / exaybachay
 
     ORIGINAL DOMtoString CODE AUTHOR:
     @author Rob W <http://stackoverflow.com/users/938089/rob-w>
     Demo: var serialized_html = DOMtoString(document);
 */
 
-///*** General use functions
+//*** General use functions
 function displayOsintIframe( context, url ){
     // Remove existing IPINT window(s) before showing current
     $('.windows').each(function() {
@@ -82,7 +82,7 @@ function DOMtoString(document_root) {
     *   Use data from current browser webpage to find IP addresses and investigate them
     *
     *   Step 2a
-    *   Set up regex pattern and apply it against the current webpage, storing results in myArray 
+    *   Set up regex pattern and apply it against the current webpage, storing results in myArray
     */
     var re = /\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}/g;
     var myArray = html.match(re);
@@ -90,10 +90,10 @@ function DOMtoString(document_root) {
     var myArray = myArray.sort().filter(function(el,i,a){return i==a.indexOf(el);})
 
     /** Step 2b
-    *   Inject breaks into DOM of IP addresses 
+    *   Inject breaks into DOM of IP addresses
     */
     var newArray = myArray.join("\n");
-    
+
 
     /** Step 3
     **********
@@ -102,6 +102,7 @@ function DOMtoString(document_root) {
     //make DOM elements to bind array to
     //add attributes for sidebar and its background config
     var newArrayDiv = document.createElement("div");
+    var bgImage = chrome.extension.getURL("images/1.jpg");
     newArrayDiv.id = "newArrayDiv";
     newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:759px;width\:175px;padding-top\:25px;padding-left\:10px;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
     document.body.appendChild(newArrayDiv);
@@ -169,7 +170,7 @@ function DOMtoString(document_root) {
         document.getElementById("newArrayDiv").appendChild(newArrayText);
     }
 
-    /*** Step 4 
+    /*** Step 4
     ***********
     *   Create and arm events to unhide OSINT iframes for analysis
     */
@@ -182,7 +183,7 @@ function DOMtoString(document_root) {
             //set the active IP's color for reference
             $(this).css('border-bottom', '1px solid white');
             $(this).css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
-            
+
             //set up handles to access iframes and toggle divs to modify them
             var tmIframeNameToggle = "tmIframe" + index;
             var tmToggleNameToggle = "tmToggleDiv" + index;
@@ -201,6 +202,7 @@ function DOMtoString(document_root) {
             var aipdbToggleHandle = document.getElementById(aipdbToggleNameToggle);
             var rtHandle = document.getElementById(rtIframeNameToggle);
             var rtToggleHandle = document.getElementById(rtToggleNameToggle);
+
             //create text area to display current URL for copying
             var clipboard = document.createElement("div");
             clipboard.id = "clipboard";
@@ -208,7 +210,6 @@ function DOMtoString(document_root) {
             clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:585px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
             document.body.appendChild(clipboard);
 
-            
             //if topbar is loaded already, tear it down and close things out
             if ( $(tmToggleHandle).css('display') === ('unset') ){
                 $('.windows').each(function() {
@@ -219,12 +220,14 @@ function DOMtoString(document_root) {
                     $(this).css('display', 'none');
                     $(this).css('z-index', '0')
                 });
-            } else { //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
+            } else {
+                //if toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
                 //hide all iframes and divs before loading the new batch, to avoid a user clicking one ip and then another without first toggling/closing the initial IP
                 $('.windows, .toggleDiv').each(function() {
                     $(this).remove();
                 });
 
+                //var bgImage = chrome.extension.getURL("images/1.jpg");
                 var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
                 //set the clipboard text for copying
                 clipboard.innerText = ""
@@ -245,51 +248,49 @@ function DOMtoString(document_root) {
                 $(tmWindow).css('z-index', '120000000');
                 $(tmWindow).css('display', 'unset');
 
+                class toggleDiv {
+                    constructor(prefix,website,innertext) {
+                        //set up the toggle div
+                        var ToggleDiv = document.createElement('div');
+                        //var ToggleDivName = prefix + "IframeName";
+                        var ToggleDivName = prefix + "ToggleDiv";
+                        var ToggleDivText = document.createElement('p');
+                        ToggleDiv.id = ToggleDivName;
+                        ToggleDiv.name = ToggleDivName;
+                        ToggleDiv.value = ToggleDivName;
+                        //Count number of existing divs and adjust width accordingly
+                        var divNum = document.querySelectorAll('.toggleDiv').length;
+                        var divLeft = 200 + (divNum * 125);
+                        var divZIndex = (divNum + 120000111);
+                        //Set the actual DIV properties
+                        ToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:' + divLeft + 'px;height\:39px;width\:100px;color\:white;;z-index\:' + divZIndex + ';background-color\:#0C4E6E;margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:35px'
+                        ToggleDiv.className = 'toggleDiv';
+                        //set the text to append to this div
+                        ToggleDiv.innerText += innertext;
+                        //attach the DIV to the webpage
+                        document.body.appendChild(ToggleDiv);
+                        document.getElementById(ToggleDivName).appendChild(ToggleDivText);
 
-                //set threatminer toggle div
-                var tmToggleDiv = document.createElement('div');
-                var tmToggleDivName = "tmToggleDiv";
-                var tmToggleDivText = document.createElement('p');
-                tmToggleDiv.id = tmToggleDivName;
-                tmToggleDiv.Name = tmToggleDivName;
-                tmToggleDiv.value = tmToggleDivName;
-                tmToggleDiv.style.cssText = 'text-shadow\: 0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00;cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:200px;height\:39px;width\:100px;color\:white;z-index\:120000111;background-color\:#0C4E6E;margin\:5;padding-left\:10px;padding-right\:10px;border-top-left-radius\:6px;border-bottom-left-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                tmToggleDiv.className = 'toggleDiv';
-                //set the text to append to this div
-                tmToggleDivText.innerText += "ThreatMiner";
-                //attach the DIV to the webpage
-                document.body.appendChild(tmToggleDiv);
-                document.getElementById(tmToggleDivName).appendChild(tmToggleDivText);
+                        $('#' + ToggleDivName).on("click", function() {
+                            displayOsintIframe( this, website + myArray[index] );
+                            //clear current clipboard contents before adding new info
+                            clipboard.innerText = "";
+                            //add URL to clipboard div for copying
+                            clipboard.innerText += website + myArray[index];
+                        });
+                    }
+                }
 
-                //set robtex toggle div
-                var rtToggleDiv = document.createElement('div');
-                var rtToggleDivName = "rtToggleDiv";
-                var rtToggleDivText = document.createElement('p');
-                rtToggleDiv.id = rtToggleDivName;
-                rtToggleDiv.Name = rtToggleDivName;
-                rtToggleDiv.value = rtToggleDivName;
-                rtToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:325px;height\:39px;width\:100px;color\:white;;z-index\:120000111;background-color\:#0C4E6E;margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                rtToggleDiv.className = 'toggleDiv';
-                //set the text to append to this div
-                rtToggleDivText.innerText += "robtex";
-                //attach the DIV to the webpage
-                document.body.appendChild(rtToggleDiv);
-                document.getElementById(rtToggleDivName).appendChild(rtToggleDivText);
+                //set threatminer toggle div class object
+                tmdiv = new toggleDiv('tm','https://www.threatminer.org/host.php?q=','ThreatMiner');
+                //set the default threatminer top nav text shadow
+                $('#tmToggleDiv').css('text-shadow', '0 0 0.25em #f00, 0 0 0.25em #f00, 0 0 0.25em #f00');
 
-                //set threatcrowd toggle div
-                var tcToggleDiv = document.createElement('div');
-                var tcToggleDivName = "tcToggleDiv";
-                var tcToggleDivText = document.createElement('p');
-                tcToggleDiv.id = tcToggleDivName;
-                tcToggleDiv.Name = tcToggleDivName;
-                tcToggleDiv.value = tcToggleDivName;
-                tcToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:6px;left\:450px;height\:39px;width\:100px;color\:white;z-index\:120000116;background-color\:#0C4E6E;border-bottom-right-radius\:6px;border-top-right-radius\:6px;margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-                tcToggleDiv.className = 'toggleDiv';
-                //set the text to append to this div
-                tcToggleDivText.innerText += "ThreatCrowd";
-                //attach the DIV to the webpage
-                document.body.appendChild(tcToggleDiv);
-                document.getElementById(tcToggleDivName).appendChild(tcToggleDivText);
+                //set robtex toggle div class object
+                rtdiv = new toggleDiv('rt','https://www.robtex.com/?dns=','robtex');
+
+                //set threatminer toggle div class object
+                tcdiv = new toggleDiv('tc','https://www.threatcrowd.org/ip.php?ip=','ThreatCrowd');
 
                 //unhide OSINT service toggle divs
                 $('.windows').each(function() {
@@ -301,33 +302,6 @@ function DOMtoString(document_root) {
                         $(this).css('z-index', '120000001');
                         $(this).css('cursor', 'pointer');
                     });
-                });
-
-                //if user clicks on the ThreatMiner div, hide all other iframes and display the TM OSINT
-                $('#tmToggleDiv').on("click", function() {
-                    displayOsintIframe( this, "https\://www\.threatminer\.org/host\.php?q=" + myArray[index] );
-                    //clear current clipboard contents before adding new info
-                    clipboard.innerText = "";
-                    //add URL to clipboard div for copying
-                    clipboard.innerText += "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
-                });
-
-                //if user clicks on the Robtex div, hide all other iframes and display the robtex OSINT        
-                $('#rtToggleDiv').on("click", function() {
-                    displayOsintIframe( this, "https\://www\.robtex\.com/?dns=" + myArray[index] );
-                    //clear current clipboard contents before adding new info
-                    clipboard.innerText = "";
-                    //add URL to clipboard div for copying
-                    clipboard.innerText += "https\://www\.robtex\.com/?dns=" + myArray[index];
-                });
-
-                //if user clicks on the ThreatCrowd div, hide all other iframes and display the TC OSINT        
-                $('#tcToggleDiv').on("click", function() {
-                    displayOsintIframe( this, "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index] );
-                    //clear current clipboard contents before adding new info
-                    clipboard.innerText = "";
-                    //add URL to clipboard div for copying
-                    clipboard.innerText += "https\://www\.threatcrowd\.org/ip\.php?ip=" + myArray[index];
                 });
             };
             return newArray;
