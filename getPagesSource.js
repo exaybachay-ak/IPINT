@@ -119,6 +119,7 @@ function DOMtoString(document_root) {
     var buttonImage = chrome.extension.getURL("images/r2.png");
     closeButton.id = "closeButton";
     closeButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:10px;left\:10px;max-height\:25%;max-width\:25%;background-image\:url(' + buttonImage + ')';
+    closeButton.title = "Close IPINT";
     var buttonImg = document.createElement("img");
     buttonImg.style.cssText = 'z-index\:120000002;position\:fixed;top\:15px;left\:15px;max-height\:2%;max-width\:2%';
     buttonImg.id = "buttonImage";
@@ -129,6 +130,7 @@ function DOMtoString(document_root) {
     var transImage = chrome.extension.getURL("images/b1.png");
     transButton.id = "transButton";
     transButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:10px;left\:150px;max-height\:25%;max-width\:25%;background-image\:url(' + transImage + ')';
+    transButton.title = "Make Transparent";
     var transImg = document.createElement("img");
     transImg.style.cssText = 'z-index\:120000002;position\:fixed;top\:15px;left\:35px;max-height\:2%;max-width\:2%';
     transImg.id = "transImage";
