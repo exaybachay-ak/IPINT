@@ -286,6 +286,9 @@ function DOMtoString(document_root) {
 
                 //set threatminer toggle div class object
                 tcdiv = new toggleDiv('tc','https://www.threatcrowd.org/ip.php?ip=','ThreatCrowd');
+
+                //set alienvault toggle div class object
+                avdiv = new toggleDiv('av','https://otx.alienvault.com/indicator/ip/1.2.3.107?utm_medium=InProduct&&utm_source=ThreatCrowd','AlienVault');
                 setClipboardPosition();
 
                 //unhide OSINT service toggle divs
