@@ -46,6 +46,13 @@ function getVisibleText(s) {
 	return s;
 }
 
+function setClipboardPosition() {
+  //tweak clipboard position
+  var divNum = document.querySelectorAll('.toggleDiv').length;
+  var clipboardLeft = 225 + (divNum * 125);
+  $('.clipboard').css('left', clipboardLeft);
+}
+
 /*
 *** Step 1
 **********
@@ -227,27 +234,15 @@ function DOMtoString(document_root) {
                     $(this).remove();
                 });
 
-                //var bgImage = chrome.extension.getURL("images/1.jpg");
-                var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
                 //set the clipboard text for copying
+                var tm = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
                 clipboard.innerText = ""
                 clipboard.innerText = "https\://www\.threatminer\.org/host\.php?q=" + myArray[index];
 
                 //set threatminer iframe
-                var tmIframeName = "tmIframe";
-                var tmWindow = document.createElement('iframe');
-                tmWindow.id = tmIframeName;
-                tmWindow.value = tmIframeName;
-                tmWindow.style.cssText = 'display\:none;position\:fixed;top\:65px;left\:205px;height\:730px;width\:85%;color\:white;background\:#666;display\:none;overflow\:scroll;z-index\:0;border-radius\:6px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;';
-                tmWindow.className = 'windows';
-                tmWindow.src = tm;
-                //attach the iframe to the webpage
-                document.body.appendChild(tmWindow);
-                document.getElementById(tmIframeName).name = tmIframeName;
+                displayOsintIframe( this, 'https\://www\.threatminer\.org/host\.php?q=' + myArray[index] );
 
-                $(tmWindow).css('z-index', '120000000');
-                $(tmWindow).css('display', 'unset');
-
+                //create class for instantiating toggle divs and onclick functionality
                 class toggleDiv {
                     constructor(prefix,website,innertext) {
                         //set up the toggle div
@@ -291,6 +286,7 @@ function DOMtoString(document_root) {
 
                 //set threatminer toggle div class object
                 tcdiv = new toggleDiv('tc','https://www.threatcrowd.org/ip.php?ip=','ThreatCrowd');
+                setClipboardPosition();
 
                 //unhide OSINT service toggle divs
                 $('.windows').each(function() {
