@@ -1,7 +1,7 @@
 {
   "name": "Get pages source",
-  "version": "1.999",
-  "manifest_version": 4,
+  "version": "2.0",
+  "manifest_version": 5,
   "description": "Get pages source from a popup",
   "permissions": [
     "activeTab",
