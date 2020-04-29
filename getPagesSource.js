@@ -1,4 +1,4 @@
-/** IPINT v1.0
+/** IPINT v2.0
     New IPINT Overlay AUTHOR
     @author Jacob Kelley / exaybachay
 
