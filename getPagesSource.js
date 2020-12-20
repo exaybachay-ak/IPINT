@@ -20,7 +20,7 @@
 **************************************
 *   Initialize global variables and make async call to populate storage and inject iframes
 */
-var DEBUG = true; // Set this to get more output for troubleshooting
+var DEBUG = false; // Set this to get more output for troubleshooting
 
 // Main async call to populate storage and then inject iframes
 (async () => {
@@ -60,9 +60,6 @@ async function populateStorage(){
             storage = items;
         }
     });
-    if(DEBUG){
-        console.log(JSON.stringify(storage));
-    }
 }
 
 async function main() {
