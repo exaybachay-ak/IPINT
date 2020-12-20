@@ -488,6 +488,9 @@ async function main() {
                 // Set the active IP's color for reference
                 $(this).css('border-bottom', '1px solid white');
 
+                // Modify opacity back to 1, in case user clicks toggleme link from transparent mode
+                $('#newArrayDiv').css('opacity','1.0');
+                
                 // Set up handles to access iframes and toggle divs to modify them
                 var tmIframeNameToggle = "tmIframe" + index;
                 var tmToggleNameToggle = "tmToggleDiv" + index;
