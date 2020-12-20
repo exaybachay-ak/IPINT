@@ -1,11 +1,13 @@
 {
-  "name": "Get pages source",
+  "name": "IPINT-JSON",
   "version": "2.0",
-  "manifest_version": 5,
-  "description": "Get pages source from a popup",
+  "manifest_version": 2,
+  "description": "Retrieve IP Addresses on Page and create hyperlinks to Open Source Intelligence about them.",
   "permissions": [
+    "storage",
     "activeTab",
-    "*://*/"
+    "http://*/*",
+    "https://*/*"
 ],
   "browser_action": {
     "default_icon": "./images/icon.png",
@@ -26,5 +28,14 @@
   "web_accessible_resources": [
        "images/*",
        "*"
-     ]
+     ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+I",
+        "mac": "MacCtrl+I"
+      },
+      "description": "Opens IPINT"
+    }
+  }  
 }
