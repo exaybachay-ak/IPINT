@@ -200,7 +200,7 @@ async function main() {
 
         // Create iframe
         var ipintIframe = document.createElement('iframe');
-        ipintIframe.style.cssText = 'display\:none;position\:fixed;top\:65px;left\:205px;height\:87%;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;box-shadow\:5px 5px 2\.5px #555555;border-radius\:6px;border\:2px solid gray;';
+        ipintIframe.style.cssText = 'display\:none;position\:fixed;top\:65px;left\:220px;height\:87%;width\:85%;color\:white;background\:#666;overflow\:scroll;z-index\:0;box-shadow\:5px 5px 2\.5px #555555;border-radius\:6px;border\:2px solid gray;';
         ipintIframe.className = 'windows';
         ipintIframe.src = url;
 
@@ -302,7 +302,7 @@ async function main() {
         var newArrayDiv = document.createElement("div");
         var bgImage = chrome.extension.getURL("images/1.jpg");
         newArrayDiv.id = "newArrayDiv";
-        newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:90%;width\:175px;padding-top\:25px;padding-left\:5px;padding-right\:5px;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:90%;width\:190px;padding-top\:25px;padding-left\:5px;padding-right\:5px;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
         document.body.appendChild(newArrayDiv);
 
         // Add attributes to window for closing and closing image
@@ -530,7 +530,7 @@ async function main() {
                     var clipboard = document.createElement("div");
                     clipboard.id = "clipboard";
                     clipboard.className = "clipboard";
-                    clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:585px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
+                    clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:600px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
                     document.body.appendChild(clipboard);
                 } else {
                     // If toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
@@ -548,7 +548,7 @@ async function main() {
                     var clipboard = document.createElement("div");
                     clipboard.id = "clipboard";
                     clipboard.className = "clipboard";
-                    clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:585px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
+                    clipboard.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:11px;left\:600px;height\:33px;padding-top\:4px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
                     document.body.appendChild(clipboard);
 
                     // Set the clipboard text for copying
@@ -572,7 +572,7 @@ async function main() {
                             ToggleDiv.value = ToggleDivName;
                             // Count number of existing divs and adjust width accordingly
                             var divNum = document.querySelectorAll('.toggleDiv').length;
-                            var divLeft = 200 + (divNum * 125);
+                            var divLeft = 220 + (divNum * 125);
                             var divZIndex = (divNum + 120000111);
                             // Set the actual DIV properties
                             ToggleDiv.style.cssText = 'cursor\:pointer;display\:unset;position\:fixed;top\:11px;left\:' + divLeft + 'px;height\:39px;width\:100px;color\:white;;z-index\:' + divZIndex + ';background-color\:#0C4E6E;margin\:5;padding-left\:10px;padding-right\:10px;border\:2px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:35px'
