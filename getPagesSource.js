@@ -318,13 +318,13 @@ async function main() {
 
         // Remove any private IP addresses
         ipstoremove = [];
-        var loopback = myArray.find(/127\.\d{1,3}\.\d{1,3}\.\d{1,3}/);
-        var classAprivate = myArray.find(/10\.\d{1,3}\.\d{1,3}\.\d{1,3}/);
-        var classBprivate = myArray.find(/172\.16\.\d{1,3}.\d{1,3}/);
-        var classCprivate = myArray.find(/192\.168\.\d{1,3}.\d{1,3}/);
-        var classDEprivate = myArray.find(/(22[4-9]|23[0-9]|24[0-9]|25[0-5])\.\d{1,3}\.\d{1,3}\.\d{1,3}/);
-        var above255 = myArray.find(/.*([3-9][0-9][0-9]|26[0-9]|25[5-9]).*/);
-        var versioninfo = myArray.find(/(^0\..*)|(.*\.0\d.*)|(\.(00|000)\..*)|(.*00.*)|(.*000.*)/);
+        var loopback = myArray.find(/\b127\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/); 
+        var classAprivate = myArray.find(/\b10\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/); 
+        var classBprivate = myArray.find(/\b172\.16\.\d{1,3}.\d{1,3}\b/); 
+        var classCprivate = myArray.find(/\b192\.168\.\d{1,3}.\d{1,3}\b/);
+        var classDEprivate = myArray.find(/\b(22[4-9]|23[0-9]|24[0-9]|25[0-5])\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/); 
+        var above255 = myArray.find(/\b((.*[3-9][0-9][0-9].*)|(.*26[0-9].*)|(.*25[6-9]).*)\b/);
+        var versioninfo = myArray.find(/(\b00\..*)|(\b000\..*)/);
         var foundips = loopback.concat(classAprivate,classBprivate,classCprivate,classDEprivate,above255,versioninfo)
 
         // Loop each private range and add to list
