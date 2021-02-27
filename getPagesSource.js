@@ -322,7 +322,7 @@ async function main() {
         var classBprivate = myArray.find(/\b172\.16\..*\b/);
         var classCprivate = myArray.find(/\b192\.168\..*\b/);
         var classDprivate = myArray.find(/\b240\..*\b/);
-        var versioninfo = myArray.find(/(\b0\d.* \b)|(\b.*\.0\d.*\b)/);
+        var versioninfo = myArray.find(/(\b0\d.* \b)|(\b.*\.0\d.*\b)|(0.*\b)/);
         var foundips = classAprivate.concat(classBprivate,classCprivate,classDprivate,versioninfo)
 
         // Loop each private range and add to list
