@@ -318,31 +318,18 @@ async function main() {
         var classBprivate = myArray.find(/\b172\.16\..*\b/);
         var classCprivate = myArray.find(/\b192\.168\..*\b/);
         var classDprivate = myArray.find(/\b240\..*\b/);
+        var versioninfo = myArray.find(/(\b0\d\..* \b)|(\b.*0\d.*\b)/);
+        var foundips = classAprivate.concat(classBprivate,classCprivate,classDprivate,versioninfo)
 
         // Loop each private range and add to list
-        for (n = 0; n < classAprivate.length; n++){
-            var addip = myArray[classAprivate[n]];
-            ipstoremove.push(addip);
-        }
-
-        for (o = 0; o < classAprivate.length; o++){
-            var addip = myArray[classBprivate[n]];
-            ipstoremove.push(addip);
-        }
-
-        for (p = 0; p < classAprivate.length; p++){
-            var addip = myArray[classCprivate[n]];
-            ipstoremove.push(addip);
-        }
-
-        for (q = 0; q < classAprivate.length; q++){
-            var addip = myArray[classDprivate[n]];
+        for (n = 0; n < foundips.length; n++){
+            var addip = myArray[foundips[n]];
             ipstoremove.push(addip);
         }
 
         // Remove private IPs from main array list
-        for(r = 0; r < ipstoremove.length; r++){
-            myArray.remove(ipstoremove[r]);
+        for(o = 0; o < ipstoremove.length; o++){
+            myArray.remove(ipstoremove[o]);
         }
 
         // Inject breaks into DOM of IP addresses
