@@ -324,7 +324,7 @@ async function main() {
         var classCprivate = myArray.find(/192\.168\.\d{1,3}.\d{1,3}/);
         var classDEprivate = myArray.find(/(22[4-9]|23[0-9]|24[0-9]|25[0-5])\.\d{1,3}\.\d{1,3}\.\d{1,3}/);
         var above255 = myArray.find(/.*([3-9][0-9][0-9]|26[0-9]|25[5-9]).*/);
-        var versioninfo = myArray.find(/(\b0.* \b)|(\.0.*\b)|(^0.*\b)/);
+        var versioninfo = myArray.find(/(^0\..*)|(.*\.0\d.*)|(\.(00|000)\..*)|(.*00.*)|(.*000.*)/);
         var foundips = loopback.concat(classAprivate,classBprivate,classCprivate,classDEprivate,above255,versioninfo)
 
         // Loop each private range and add to list
