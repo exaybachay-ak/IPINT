@@ -1,4 +1,4 @@
-/** IPINT v2.0
+/** IPINT v2.1
 
     IPINT AUTHOR
     @author Jacob Kelley / exaybachay-ak
@@ -12,6 +12,10 @@
     Improved user interface aesthetics
     Implemented Chrome Storage backend to save user determinations
     Refactored some code for efficiency and readability
+    
+    Feb 2021 - v2.1 Updates:
+    Reconfigured UI to fix some formatting issues
+    Implemented regex checks on initial IP Array seeding, to remove private IP addresses and version numbers
 
 */
 
