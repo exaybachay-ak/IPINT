@@ -288,6 +288,63 @@ async function main() {
         // Reduce the array and dedupe it
         var myArray = myArray.sort().filter(function(el,i,a){return i==a.indexOf(el);})
 
+
+        // Adding functions for finding and removing ip array items
+        
+        // https://stackoverflow.com/questions/3954438/how-to-remove-item-from-array-by-value
+        Array.prototype.remove = function() {
+            var what, a = arguments, L = a.length, ax;
+            while (L && this.length) {
+                what = a[--L];
+                while ((ax = this.indexOf(what)) !== -1) {
+                    this.splice(ax, 1);
+                }
+            }
+            return this;
+        };
+
+
+        // https://stackoverflow.com/questions/12695594/can-i-use-wildcards-when-searching-an-array-of-strings-in-javascript
+        Array.prototype.find = function(regex) {
+            var arr = this;
+            var matches = arr.filter( function(e) { return regex.test(e); } );
+            return matches.map(function(e) { return arr.indexOf(e); } );
+        };
+
+
+        // Remove any private IP addresses
+        ipstoremove = [];
+        var classAprivate = myArray.find(/\b10\..*\b/);
+        var classBprivate = myArray.find(/\b172\.16\..*\b/);
+        var classCprivate = myArray.find(/\b192\.168\..*\b/);
+        var classDprivate = myArray.find(/\b240\..*\b/);
+
+        // Loop each private range and add to list
+        for (n = 0; n < classAprivate.length; n++){
+            var addip = myArray[classAprivate[n]];
+            ipstoremove.push(addip);
+        }
+
+        for (o = 0; o < classAprivate.length; o++){
+            var addip = myArray[classBprivate[n]];
+            ipstoremove.push(addip);
+        }
+
+        for (p = 0; p < classAprivate.length; p++){
+            var addip = myArray[classCprivate[n]];
+            ipstoremove.push(addip);
+        }
+
+        for (q = 0; q < classAprivate.length; q++){
+            var addip = myArray[classDprivate[n]];
+            ipstoremove.push(addip);
+        }
+
+        // Remove private IPs from main array list
+        for(r = 0; r < ipstoremove.length; r++){
+            myArray.remove(ipstoremove[r]);
+        }
+
         // Inject breaks into DOM of IP addresses
         var newArray = myArray.join("\n");
 
