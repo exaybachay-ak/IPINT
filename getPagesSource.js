@@ -241,7 +241,7 @@ async function main() {
     function setClipboardPosition() {
       // Tweak clipboard position
       var divNum = document.querySelectorAll('.toggleDiv').length;
-      var clipboardLeft = 225 + (divNum * 100);
+      var clipboardLeft = 255 + (divNum * 100);
       $('.clipboard').css('left', clipboardLeft);
     }
 
@@ -530,7 +530,7 @@ async function main() {
                     var clipboard = document.createElement("div");
                     clipboard.id = "clipboard";
                     clipboard.className = "clipboard";
-                    clipboard.style.cssText = 'z-index\:120000111;position\:fixed;top\:13px;left\:500px;height\:33px;padding-top\:1px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
+                    clipboard.style.cssText = 'z-index\:120000111;position\:fixed;top\:13px;left\:525px;height\:33px;padding-top\:1px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
                     document.body.appendChild(clipboard);
                 } else {
                     // If toolbar hasn't loaded yet, unhide the topnav for loading OSINT iframes and also pop out a virustotal window since you can't load VT in an iframe
@@ -548,7 +548,7 @@ async function main() {
                     var clipboard = document.createElement("div");
                     clipboard.id = "clipboard";
                     clipboard.className = "clipboard";
-                    clipboard.style.cssText = 'z-index\:120000111;position\:fixed;top\:13px;left\:500px;height\:33px;padding-top\:1px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
+                    clipboard.style.cssText = 'z-index\:120000111;position\:fixed;top\:13px;left\:525px;height\:33px;padding-top\:1px;padding-left\:10px;padding-right\:18px;box-shadow\:5px 5px 2\.5px #555555;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:27px';
                     document.body.appendChild(clipboard);
 
                     // Set the clipboard text for copying
