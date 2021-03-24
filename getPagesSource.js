@@ -17,6 +17,13 @@
     Reconfigured UI to fix some formatting issues
     Implemented regex checks on initial IP Array seeding, to remove private IP addresses and version numbers
 
+    Mar 2021 - v2.2 Updates:
+    Added donation link
+    Reconfigured layout to accommodate new link
+    Moved Clear Storage button to the right to prevent accidentally clicking it
+    Tested using zoom in/zoom out, and reconfigured size settings to ensure all content resizes together
+    Updated version regex after noting a Google search was still pulling in version info
+
 */
 
 
@@ -194,6 +201,7 @@ async function main() {
 
     //// ^^^ The above functions are for user data Chrome storage
     //////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
     //// vvv Below are main functions for IPINT - injecting iframes and modifying elements
 
     function displayOsintIframe( context, url ){
@@ -324,7 +332,7 @@ async function main() {
         var classCprivate = myArray.find(/\b192\.168\.\d{1,3}.\d{1,3}\b/);
         var classDEprivate = myArray.find(/\b(22[4-9]|23[0-9]|24[0-9]|25[0-5])\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/); 
         var above255 = myArray.find(/\b((.*[3-9][0-9][0-9].*)|(.*26[0-9].*)|(.*25[6-9]).*)\b/);
-        var versioninfo = myArray.find(/(\b00\..*)|(\b000\..*)/);
+        var versioninfo = myArray.find(/(\b00\..*)|(\b000\..*)|(\b0\d.*)/);
         var foundips = loopback.concat(classAprivate,classBprivate,classCprivate,classDEprivate,above255,versioninfo)
 
         // Loop each private range and add to list
@@ -348,12 +356,17 @@ async function main() {
         */
 
         // Make DOM elements to bind array to
+        // Create wrapper div to enable scrolling with payment options at bottom 
+        var wrapperDiv = document.createElement("div");
+        wrapperDiv.id = "wrapperDiv";
+        wrapperDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:90%;width\:190px;padding-top\:25px;padding-left\:5px;padding-right\:5px;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        document.body.appendChild(wrapperDiv);
+
         // Add attributes for sidebar and its background config
         var newArrayDiv = document.createElement("div");
-        var bgImage = chrome.extension.getURL("images/1.jpg");
         newArrayDiv.id = "newArrayDiv";
-        newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000111;position\:fixed;top\:10px;left\:10px;height\:90%;width\:190px;padding-top\:25px;padding-left\:5px;padding-right\:5px;color\:white;background-color\:#0C4E6E;border-radius\:6px;border\:3px solid gray;box-shadow\:5px 5px 2\.5px #555555;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
-        document.body.appendChild(newArrayDiv);
+        newArrayDiv.style.cssText = 'overflow\:auto;z-index\:120000110;position\:fixed;top\:40px;left\:12px;height\:70%;width\:190px;padding-left\:5px;padding-right\:5px;color\:white;background-color\:#0C4E6E;font-family\:Arial;font-size\:12px;-webkit-font-smoothing\:antialiased;line-height\:17px';
+        wrapperDiv.appendChild(newArrayDiv);
 
         // Add attributes to window for closing and closing image
         var closeButton = document.createElement("div");
@@ -380,7 +393,7 @@ async function main() {
         // Add button to clear Chrome storage
         var storageButton = document.createElement("button");
         storageButton.id = "storageButton";
-        storageButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:15px;left\:55px;';
+        storageButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:absolute;top\:2px;right\:5px;';
         storageButton.title = "Clear Storage";
         storageButton.innerText = "Clear Storage";
         $(storageButton).click(function() {
@@ -411,12 +424,11 @@ async function main() {
         });
 
         // Attach close button and transparency to DOM
-        document.getElementById("newArrayDiv").appendChild(closeButton);
+        document.getElementById("wrapperDiv").appendChild(closeButton);
         document.getElementById("closeButton").appendChild(buttonImg);
-        document.getElementById("newArrayDiv").appendChild(transButton);
+        document.getElementById("wrapperDiv").appendChild(transButton);
         document.getElementById("transButton").appendChild(transImg);
-        document.getElementById("newArrayDiv").appendChild(storageButton);
-
+        document.getElementById("wrapperDiv").appendChild(storageButton);
         // Use IP array to generate text of IP addresses and add it to sidebar div
         for (i = 0;i < myArray.length; i++) {
             // Set up references and information about new P element
@@ -682,6 +694,35 @@ async function main() {
                 return newArray;
             });
         });
+
+        /** Add link to payment information
+        ***********************************
+        */
+        // Create hyperlink text
+        var paymentOptionsLink = document.createElement("a");
+        paymentOptionsLink.innerText = "Donation Options:";
+        paymentOptionsLink.id = "paymentOptions";
+        paymentOptionsLink.href = "https://jacobkelley.github.io";
+        paymentOptionsLink.style.cssText = 'z-index\:120000002;position\:absolute;bottom\:100px;left\:5px;color\:white;text-shadow\:0 0 0.10em white, 0 0 0.10em white, 0 0 0.10em white';
+
+        // Create image element and style info
+        var paymentOptionsImageAnchor = document.createElement("a");
+        paymentOptionsImageAnchor.id = "paymentOptionsImageAnchor";
+        paymentOptionsImageAnchor.href = "https://jacobkelley.github.io#donations";
+
+        var paymentOptionsImage = document.createElement("img");
+        var paymentImage = chrome.extension.getURL("images/payment.png");
+        paymentOptionsImage.src = paymentImage;
+        paymentOptionsImage.href = "https://jacobkelley.github.io";
+        paymentOptionsImage.style.cssText = 'z-index\:120000002;width\:175px;height\:87.5px;position\:absolute;bottom\:10px;left\:5px;color\:white;';
+
+        // Attach divs to sidebar 
+        document.getElementById("wrapperDiv").appendChild(paymentOptionsLink);
+        paymentOptionsImageAnchor.appendChild(paymentOptionsImage);
+        document.getElementById("wrapperDiv").appendChild(paymentOptionsImageAnchor);
+
+        // Override default blue link color on href elements
+        document.getElementById("paymentOptionsLink").style.color = "white";
     }
 
     // Assuming newArrayDiv doesn't exist, so we send a message to create it
