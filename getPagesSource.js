@@ -664,7 +664,7 @@ async function main() {
                     rtdiv = new toggleDiv('rt','https://www.robtex.com/?dns=','robtex');
 
                     // Set threatminer toggle div class object
-                    tcdiv = new toggleDiv('tc','https://www.threatcrowd.org/ip.php?ip=','ThreatCrowd');
+                    tcdiv = new toggleDiv('tc','https://ci-www.threatcrowd.org/ip.php?ip=','ThreatCrowd');
 
                     // Put the clipboard div after all OSINT divs
                     setClipboardPosition();
