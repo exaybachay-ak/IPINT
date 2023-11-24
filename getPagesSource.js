@@ -390,6 +390,7 @@ async function main() {
         transImg.id = "transImage";
         transImg.src = transImage;
 
+        /* Debugging only
         // Add button to clear Chrome storage
         var storageButton = document.createElement("button");
         storageButton.id = "storageButton";
@@ -401,6 +402,7 @@ async function main() {
             $('.toggleme').css('text-shadow', 'none');
             $('.toggleme').css('color', 'white');            
         });
+        */
 
         // Set function to close out sidebar and all divs
         $(buttonImg).click(function() {
@@ -428,7 +430,7 @@ async function main() {
         document.getElementById("closeButton").appendChild(buttonImg);
         document.getElementById("wrapperDiv").appendChild(transButton);
         document.getElementById("transButton").appendChild(transImg);
-        document.getElementById("wrapperDiv").appendChild(storageButton);
+        //document.getElementById("wrapperDiv").appendChild(storageButton); REMOVED on 11-24-2023 JPK
         // Use IP array to generate text of IP addresses and add it to sidebar div
         for (i = 0;i < myArray.length; i++) {
             // Set up references and information about new P element
