@@ -29,3 +29,6 @@ Future releases may incorporate:
 <li>GreenSnow.co</li>
 <li>VirusTotal (API Calls and caching)</li>
 </ul>
+
+UPDATE 11-24-2023:
+It seems like ThreatMiner is hit or miss, and sometimes when you load IPINT it won't go there.  When I loaded it today, I manually browsed to ThreatMiner, and then it started to work afterwards, so I think it could be something to do with cached data - if you cannot load ThreatMiner, try going there manually in your browser and then re-loading IPINT.
