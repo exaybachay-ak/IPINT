@@ -406,7 +406,7 @@ async function main() {
 
         // Set function to close out sidebar and all divs
         $(buttonImg).click(function() {
-            $('.windows, .toggleDiv, #newArrayDiv').each(function() {
+            $('.windows, .toggleDiv, #wrapperDiv, #newArrayDiv').each(function() {
                 $(this).remove();
             });
             clipboard.remove();
