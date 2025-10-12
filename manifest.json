@@ -1,41 +1,67 @@
 {
   "name": "IPINT-JSON",
-  "version": "2.0",
-  "manifest_version": 2,
-  "description": "Retrieve IP Addresses on Page and create hyperlinks to Open Source Intelligence about them.",
+  "version": "3.0",
+  "manifest_version": 3,
+  "description": "Retrieve IP addresses on a page and create hyperlinks to open-source intelligence about them.",
+  
+  "action": {
+    "default_icon": {
+      "16": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "default_popup": "popup.html"
+  },
+
   "permissions": [
     "storage",
     "activeTab",
-    "http://*/*",
-    "https://*/*"
-],
-  "browser_action": {
-    "default_icon": "./images/icon.png",
-    "default_popup": "popup.html"
-  },
+    "tabs",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
 
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["jquery.js", "popup.js"]
     }
-],
+  ],
 
-  "icons": { "16": "./images/unarmed.png",
-           "48": "./images/unarmed.png",
-          "128": "./images/unarmed.png" },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+
+  "icons": {
+    "16": "images/unarmed.png",
+    "48": "images/unarmed.png",
+    "128": "images/unarmed.png"
+  },
 
   "web_accessible_resources": [
-       "images/*",
-       "*"
-     ],
+    {
+      "resources": [
+        "images/*",
+        "jquery.js",
+        "popup.js",
+        "getPagesSource.js",
+        "popup.html"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
   "commands": {
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "default": "Ctrl+I",
         "mac": "MacCtrl+I"
       },
       "description": "Opens IPINT"
     }
-  }  
+  }
 }
