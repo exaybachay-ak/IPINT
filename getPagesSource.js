@@ -1,4 +1,4 @@
-/** IPINT v2.1
+/** IPINT v3.0
 
     IPINT AUTHOR
     @author Jacob Kelley / exaybachay-ak
@@ -23,6 +23,10 @@
     Moved Clear Storage button to the right to prevent accidentally clicking it
     Tested using zoom in/zoom out, and reconfigured size settings to ensure all content resizes together
     Updated version regex after noting a Google search was still pulling in version info
+
+    Oct 2025 - v3 Updates:
+    Updated manifest to be compliant with new Chrome extension manifest standard
+    Updated getPagesSource.js to use chrome functions (swap chrome.extension with chrome.runtime)
 
 */
 
@@ -370,7 +374,8 @@ async function main() {
 
         // Add attributes to window for closing and closing image
         var closeButton = document.createElement("div");
-        var buttonImage = chrome.extension.getURL("images/r2.png");
+        //var buttonImage = chrome.extension.getURL("images/r2.png");
+        var buttonImage = chrome.runtime.getURL("images/r2.png");
         closeButton.id = "closeButton";
         closeButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:10px;left\:10px;max-height\:25%;max-width\:25%;background-image\:url(' + buttonImage + ')';
         closeButton.title = "Close IPINT";
@@ -381,7 +386,8 @@ async function main() {
 
         // Add attributes to window transparency
         var transButton = document.createElement("div");
-        var transImage = chrome.extension.getURL("images/b1.png");
+        //var transImage = chrome.extension.getURL("images/b1.png");
+        var transImage = chrome.runtime.getURL("images/b1.png");
         transButton.id = "transButton";
         transButton.style.cssText = 'cursor\:pointer;z-index\:120000000;position\:fixed;top\:10px;left\:150px;max-height\:25%;max-width\:25%;background-image\:url(' + transImage + ')';
         transButton.title = "Make Transparent";
@@ -447,7 +453,8 @@ async function main() {
 
             // Build isGood (green check) button div and image
             var isGoodButton = document.createElement("div");
-            var isGoodImage = chrome.extension.getURL("images/green-check-icon.png");
+            //var isGoodImage = chrome.extension.getURL("images/green-check-icon.png");
+            var isGoodImage = chrome.runtime.getURL("images/green-check-icon.png");
             var isGoodButtonName = "isGoodButton" + i;
             isGoodButton.id = isGoodButtonName;
             isGoodButton.style.cssText = 'margin-left:10px;float\:right;z-index:120000112;';
@@ -472,7 +479,8 @@ async function main() {
 
             // Build isSuspect (red x) button div and image
             var isSuspectButton = document.createElement("div");
-            var isSuspectImage = chrome.extension.getURL("images/red-x-icon.png");
+            //var isSuspectImage = chrome.extension.getURL("images/red-x-icon.png");
+            var isSuspectImage = chrome.runtime.getURL("images/red-x-icon.png");
             var isSuspectButtonName = "isSuspectButton" + i;
             isSuspectButton.id = isSuspectButtonName;
             isSuspectButton.style.cssText = 'margin-left:10px;float\:right;z-index:120000112';
@@ -497,7 +505,8 @@ async function main() {
 
             // Build unsure (blue ?) button div and image
             var unsureButton = document.createElement("div");
-            var unsureImage = chrome.extension.getURL("images/blue-questionmark-icon.png");
+            //var unsureImage = chrome.extension.getURL("images/blue-questionmark-icon.png");
+            var unsureImage = chrome.runtime.getURL("images/blue-questionmark-icon.png");
             var unsureButtonName = "unsureButton" + i;
             unsureButton.id = unsureButtonName;
             unsureButton.style.cssText = 'float\:right;z-index:120000112';
@@ -713,7 +722,8 @@ async function main() {
         paymentOptionsImageAnchor.href = "https://jacobkelley.github.io#donations";
 
         var paymentOptionsImage = document.createElement("img");
-        var paymentImage = chrome.extension.getURL("images/payment.png");
+        //var paymentImage = chrome.extension.getURL("images/payment.png");
+        var paymentImage = chrome.runtime.getURL("images/payment.png");
         paymentOptionsImage.src = paymentImage;
         paymentOptionsImage.href = "https://jacobkelley.github.io";
         paymentOptionsImage.style.cssText = 'z-index\:120000002;width\:175px;height\:87.5px;position\:absolute;bottom\:10px;left\:5px;color\:white;';
